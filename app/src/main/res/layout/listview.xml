@@ -1,0 +1,38 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    app:cardElevation="4dp"
+    app:cardCornerRadius="8dp"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/listText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_weight="40"
+            android:drawablePadding="10dp"
+            android:gravity="left"
+            android:layout_marginHorizontal="@android:dimen/app_icon_size"
+            android:text="List example blah blah"
+            android:textColor="#000000" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/listButton"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:background="@android:color/transparent"
+        android:drawableLeft="@drawable/lists" />
+
+</androidx.cardview.widget.CardView>

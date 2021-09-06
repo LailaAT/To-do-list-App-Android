@@ -26,7 +26,7 @@ public class TaskDAO {
     private String[] columns = { Database.TASK_ID,
             Database.STATUS, Database.TASK_SUCCESS,
             Database.TASK_NAME, Database.CATEGORY,
-            Database.TASK_COLOR, Database.USER,
+            //Database.TASK_COLOR, Database.USER,
             Database.DURATION };
 
 

@@ -8,16 +8,28 @@
 
 
     <TextView
+        android:id="@+id/coinText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="30dp"
         android:layout_above="@+id/title"
-        android:layout_marginBottom="-50dp"
+        android:layout_alignParentRight="true"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="57dp"
+        android:layout_marginBottom="-57dp"
         android:text="000"
-        android:textSize="20sp"
-        />
+        android:textSize="30sp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_alignLeft="@id/coinText"
+        android:layout_marginStart="45dp"
+        android:layout_marginLeft="33dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="38dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/coin_10" />
 
     <TextView
         android:id = "@+id/title"
@@ -33,12 +45,13 @@
         android:textSize = "35sp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id = "@+id/tasksoverview"
+        android:id="@+id/tasksoverview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below = "@id/title"
-        app:layoutManager = "androidx.recyclerview.widget.LinearLayoutManager"
-        android:nestedScrollingEnabled="true"/>
+        android:layout_below="@id/title"
+        android:layout_marginTop="15dp"
+        android:nestedScrollingEnabled="true"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id = "@+id/addTask"

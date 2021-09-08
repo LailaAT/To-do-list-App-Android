@@ -11,7 +11,7 @@
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
         android:textStyle = "bold"
-        android:text = "Your Lists"
+        android:text = "Your Lists!"
         android:textColor = "#9E6B55"
         android:gravity="center"
         android:layout_marginStart = "110dp"

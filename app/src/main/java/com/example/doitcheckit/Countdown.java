@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.doitcheckit.Adapter.ToDoAdapter;
+import com.example.doitcheckit.Model.TasksModel;
 import com.example.doitcheckit.Utils.Database;
 import com.example.doitcheckit.Utils.TaskDAO;
 
@@ -20,14 +21,21 @@ import java.util.Locale;
 
 public class Countdown extends AppCompatActivity {
 
-    private EditText durationInput;
+    //Objects
+    private TasksModel task;
+
+
+    //private EditText durationInput;
 
     private TextView countdownView;
     //attribute for countdown text
 
+    //Buttons
     private Button startPause;
     private Button reset;
     //defining the start/pause + reset button
+
+    //Countdown
     private CountDownTimer countdown;
 
     private boolean timerRunning;

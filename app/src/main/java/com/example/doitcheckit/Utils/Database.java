@@ -11,9 +11,9 @@ public class Database extends SQLiteOpenHelper {
     public static final String TASK_TABLE = "taskTable";
     public static final String TASK_ID = "task_id";
     public static final String STATUS = "status";
-    public static final String TASK_SUCCESS = "taskSuccess";
+    //public static final String TASK_SUCCESS = "taskSuccess";
     public static final String TASK_NAME = "taskName";
-    public static final String CATEGORY = "category";
+    //public static final String CATEGORY = "category";
     //public static final String TASK_COLOR = "color";
     //public static final String USER = "user";
     //This will be an id from another table
@@ -34,11 +34,11 @@ public class Database extends SQLiteOpenHelper {
     //Task table creation
     private static final String CREATE_TASK_TABLE = "CREATE TABLE " + TASK_TABLE + "("
             + TASK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + TASK_NAME + " TEXT NOT NULL, "
-            + DURATION + " BIGINT, "
-            + CATEGORY + " TEXT, "
-            + STATUS + " INTEGER, "
-            + TASK_SUCCESS + " INTEGER)";
+            + TASK_NAME + " TEXT, "
+            + DURATION + " INTEGER, "
+            //+ CATEGORY + " TEXT, "
+            + STATUS + " INTEGER) ";
+            //+ TASK_SUCCESS + " INTEGER)";
             //+ TASK_COLOR + " TEXT, "
             //+ USER + " INTEGER NOT NULL)";
 

@@ -25,7 +25,7 @@ public class Countdown extends AppCompatActivity {
     private TasksModel task;
 
 
-    //private EditText durationInput;
+    private EditText durationInput;
 
     private TextView countdownView;
     //attribute for countdown text

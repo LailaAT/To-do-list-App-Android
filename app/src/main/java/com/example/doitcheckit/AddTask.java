@@ -31,11 +31,11 @@ public class AddTask extends BottomSheetDialogFragment {
     private EditText newTaskText;
     private EditText durationText;
     private Button saveButton;
-    private Database db;
+    //private Database db;
     private TaskDAO taskDAO;
 
     //object
-    TasksModel task;
+    TasksModel task;            // AT: task vs taskDAO
 
     public static AddTask newInstance() {
         return new AddTask();
@@ -65,7 +65,7 @@ public class AddTask extends BottomSheetDialogFragment {
         newTaskText = requireView().findViewById(R.id.newTaskText);
         durationText = requireView().findViewById(R.id.durationText);
         saveButton = getView().findViewById(R.id.newTaskButton);
-
+        taskDAO = new TaskDAO(getContext());
 
         boolean isUpdate = false;
         //whether a new task is being created or an old one is being updated
@@ -75,17 +75,17 @@ public class AddTask extends BottomSheetDialogFragment {
         //this allows me to get the data from the adapter and then pass it on to the dialog sheet fragment
         if(bundle != null) {
             isUpdate = true;
-            String task = bundle.getString("taskName");
+            String taskName = bundle.getString("taskName");     // AT: ok to have two variables with the same name "task" ?
             long num = bundle.getLong("duration");
-            newTaskText.setText(task);
-            assert task != null;
-            if (task.length() > 0 && num != 0)
+            newTaskText.setText(taskName);
+            //assert taskName != null;
+            if (taskName != null && taskName.length() > 0 && num != 0)
                 //if the user inputted text
                 saveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.pastelBrown));
                 //whenever a suitable input is entered the color of the text will change
-            db = new Database(getActivity());
-            taskDAO.open();
         }
+        taskDAO.open();
+
         newTaskText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
@@ -121,7 +121,11 @@ public class AddTask extends BottomSheetDialogFragment {
                         taskDAO.updateTask(bundle.getInt("task_id"), text);
                         taskDAO.updateDuration(bundle.getInt("task_id"), num);
                 } else {
-                    createTask(text, num);
+                    task = new TasksModel();
+                    task.setStatus(0);
+                    task.setTaskName(text);
+                    task.setDuration(num);
+                    taskDAO.insertTask(task);
                 }
 
                 dismiss();
@@ -130,17 +134,17 @@ public class AddTask extends BottomSheetDialogFragment {
 
     }
 
-    public void updateTask(Bundle bundle, boolean isUpdate, String text, int num){
+    public void updateTask(Bundle bundle, boolean isUpdate, String text, int num){      // AT: why not defining this in the TaskDAO class?
             taskDAO.updateTask(bundle.getInt("task_id"), text);
             taskDAO.updateDuration(bundle.getInt("task_id"), num);
     }
 
-    public void createTask(String text, long num){
+    public void createTask(String text, long num, TaskDAO taskDAO){             // AT: why not defining this in the TaskDAO class?
         task = new TasksModel();
         task.setStatus(0);
         task.setTaskName(text);
         task.setDuration(num);
-        //taskDAO.insertTask(task);
+        taskDAO.insertTask(task);
     }
 
     public int toInteger(boolean x){

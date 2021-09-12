@@ -33,9 +33,10 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     private TaskDAO taskDAO;
     //defining the database
 
-    public ToDoAdapter(MainActivity activity, Database db) {
+    public ToDoAdapter(MainActivity activity, Database db, TaskDAO taskDAO) {
         this.activity = activity;
         this.db = db;
+        this.taskDAO = taskDAO;
     }
 
     //ViewHolder allows the access of each list item without the need to look up for them

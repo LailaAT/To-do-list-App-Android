@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         tasksRecyclerView = findViewById(R.id.tasksoverview);
         tasksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        taskAdapter = new ToDoAdapter(MainActivity.this, db);
+        taskAdapter = new ToDoAdapter(MainActivity.this, db, taskDAO);
         tasksRecyclerView.setAdapter(taskAdapter);
         //setting adapter to recycler view
 

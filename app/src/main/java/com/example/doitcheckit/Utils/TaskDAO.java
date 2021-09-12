@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.ContactsContract;
 import android.util.Log;
 
 import com.example.doitcheckit.Model.ListsModel;
@@ -23,9 +24,9 @@ public class TaskDAO {
     private SQLiteDatabase db;
     private Database helper;
     private Context mContext;
-    private String[] columns = { Database.TASK_ID,
-            Database.STATUS, Database.TASK_SUCCESS,
-            Database.TASK_NAME, Database.CATEGORY,
+    private String[] columns = { Database.TASK_ID,      //
+            Database.STATUS, //Database.TASK_SUCCESS,
+            Database.TASK_NAME, //Database.CATEGORY,
             //Database.TASK_COLOR, Database.USER,
             Database.DURATION };
 
@@ -44,7 +45,7 @@ public class TaskDAO {
     }
 
     public void open() throws SQLException {
-        db = helper.getWritableDatabase();
+        db = helper.getWritableDatabase();      //
     }
 
     public void close(){ helper.close(); }
@@ -52,9 +53,10 @@ public class TaskDAO {
 
     public void insertTask(TasksModel task){
         ContentValues cv = new ContentValues();
-        cv.put(Database.TASK_NAME, task.getTaskName());
-        cv.put(Database.DURATION, task.getDuration());
-        db.insert(Database.TASK_TABLE, null, cv);
+        cv.put(helper.TASK_NAME, task.getTaskName()); // at: fix
+        cv.put(helper.STATUS, 0);
+        cv.put(helper.DURATION, task.getDuration());
+        db.insert(helper.TASK_TABLE, null, cv);
     }
 
     public List<TasksModel> getAllTasks(){
@@ -84,7 +86,7 @@ public class TaskDAO {
         return  taskList;
     }
 
-    public List<TasksModel> getTasksInList(int listId){
+    /*public List<TasksModel> getTasksInList(int listId){
         List<TasksModel>  tasksInList = new ArrayList<>();
 
         Cursor cur = db.query(Database.TASK_TABLE, columns,
@@ -99,9 +101,9 @@ public class TaskDAO {
         }
         cur.close();
         return tasksInList;
-    }
+    }*/
 
-    private TasksModel cursorToTask(Cursor cur){
+    /*private TasksModel cursorToTask(Cursor cur){
         TasksModel task = new TasksModel();
         task.setId(cur.getInt(0));
         task.setStatus(cur.getInt(1));
@@ -116,7 +118,7 @@ public class TaskDAO {
             task.setCategory(list);
 
         return task;
-    }
+    }*/
 
     public void updateStatus(int id, int status){
         ContentValues cv = new ContentValues();
@@ -126,7 +128,7 @@ public class TaskDAO {
 
     public void updateTask(int id, String taskName){
         ContentValues cv = new ContentValues();
-        cv.put(Database.TASK_NAME, taskName);
+        cv.put(Database.TASK_NAME, taskName);       // AT: is database properly initialized?
         db.update(Database.TASK_TABLE, cv, Database.TASK_ID + "= ?", new String[] {String.valueOf(id)});
     }
 

@@ -6,7 +6,7 @@ public class TasksModel {
     //so we will use 0 for false and 1 for true
     private String taskName; //color, user;
 
-    private ListsModel category;
+    //private ListsModel category;
     //the category will be the list the task is added to
     private long duration;
     //whether a task was completed or not
@@ -41,9 +41,9 @@ public class TasksModel {
 
     public long getDuration(){ return this.duration; }
 
-    public ListsModel getCategory() { return category; }
+    //public ListsModel getCategory() { return category; }
 
-    public void setCategory(ListsModel category) { this.category = category; }
+    //public void setCategory(ListsModel category) { this.category = category; }
 
     //public int getTaskSuccess() { return taskSuccess; }
 

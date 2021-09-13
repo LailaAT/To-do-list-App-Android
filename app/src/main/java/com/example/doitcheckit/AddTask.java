@@ -24,7 +24,7 @@ import com.example.doitcheckit.Utils.TaskDAO;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.Objects;
-//hello world if I see this then it is working on the laptop
+
 public class AddTask extends BottomSheetDialogFragment {
 
     public static final String TAG = "ActionBottomDialog";
@@ -35,7 +35,9 @@ public class AddTask extends BottomSheetDialogFragment {
     private TaskDAO taskDAO;
 
     //object
-    TasksModel task;            // AT: task vs taskDAO
+    TasksModel task;
+
+    // AT: task vs taskDAO
 
     public static AddTask newInstance() {
         return new AddTask();
@@ -78,8 +80,8 @@ public class AddTask extends BottomSheetDialogFragment {
             String taskName = bundle.getString("taskName");     // AT: ok to have two variables with the same name "task" ?
             long num = bundle.getLong("duration");
             newTaskText.setText(taskName);
-            //assert taskName != null;
-            if (taskName != null && taskName.length() > 0 && num != 0)
+            assert taskName != null;
+            if (taskName.length() > 0 && num != 0)
                 //if the user inputted text
                 saveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.pastelBrown));
                 //whenever a suitable input is entered the color of the text will change
@@ -89,7 +91,6 @@ public class AddTask extends BottomSheetDialogFragment {
         newTaskText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.toString().equals("")){
@@ -100,11 +101,8 @@ public class AddTask extends BottomSheetDialogFragment {
                     saveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.pastelBrown));
                 }
             }
-
             @Override
-            public void afterTextChanged(Editable s) {
-
-            }
+            public void afterTextChanged(Editable s) { }
         });
 
 

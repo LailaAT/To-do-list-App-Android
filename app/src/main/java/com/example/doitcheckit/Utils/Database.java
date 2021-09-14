@@ -45,7 +45,7 @@ public class Database extends SQLiteOpenHelper {
     //list table creation
     private static final String CREATE_LIST_TABLE = "CREATE TABLE " + LIST_TABLE + "("
             + LIST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + LIST_NAME + " TEXT NOT NULL, "
+            + LIST_NAME + " TEXT, "
             + LIST_COLOR + " TEXT)";
 
 

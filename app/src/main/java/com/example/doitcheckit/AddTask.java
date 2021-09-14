@@ -5,7 +5,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.Layout;
+//import android.text.Layout;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;

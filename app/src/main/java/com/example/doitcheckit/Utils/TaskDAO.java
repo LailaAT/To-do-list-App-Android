@@ -56,7 +56,7 @@ public class TaskDAO {
         cv.put(helper.TASK_NAME, task.getTaskName()); // at: fix
         cv.put(helper.STATUS, 0);
         cv.put(helper.DURATION, task.getDuration());
-        db.insert(helper.TASK_TABLE, null, cv);
+        db.insertOrThrow(helper.TASK_TABLE, null, cv);
     }
 
     public List<TasksModel> getAllTasks(){

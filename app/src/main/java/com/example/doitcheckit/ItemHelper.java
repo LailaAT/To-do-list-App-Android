@@ -34,8 +34,8 @@ public class ItemHelper extends ItemTouchHelper.SimpleCallback {
         if(position == ItemTouchHelper.LEFT){
             AlertDialog.Builder builder = new AlertDialog.Builder(adapter.getContext());
             builder.setTitle("Delete Task");
-            builder.setMessage("Are you sure you want to delete this task, it will be permenantly deleted?");
-            builder.setPositiveButton("COnfirm",
+            builder.setMessage("Are you sure you want to delete this task, it will be permanently deleted?");
+            builder.setPositiveButton("Confirm",
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

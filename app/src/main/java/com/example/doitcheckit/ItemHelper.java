@@ -17,6 +17,7 @@ import com.example.doitcheckit.Adapter.ToDoAdapter;
 public class ItemHelper extends ItemTouchHelper.SimpleCallback {
 
     private ToDoAdapter adapter;
+
     public ItemHelper(ToDoAdapter adapter){
         super(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         //supports left and right swipes

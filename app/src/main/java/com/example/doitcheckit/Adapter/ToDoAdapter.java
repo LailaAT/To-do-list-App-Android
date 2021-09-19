@@ -29,13 +29,13 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     private MainActivity activity;
     //attribute for main activity
 
-    private Database db;
+    //private Database db;
     private TaskDAO taskDAO;
     //defining the database
 
     public ToDoAdapter(MainActivity activity, Database db, TaskDAO taskDAO) {
         this.activity = activity;
-        this.db = db;
+        //this.db = db;
         this.taskDAO = taskDAO;
     }
 

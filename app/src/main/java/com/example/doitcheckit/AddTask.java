@@ -81,10 +81,11 @@ public class AddTask extends BottomSheetDialogFragment {
             long num = bundle.getLong("duration");
             newTaskText.setText(taskName);
             assert taskName != null;
-            if (taskName.length() > 0 && num != 0)
+            if ((taskName.length() > 0) && (num > 0)) {
                 //if the user inputted text
                 saveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.pastelBrown));
                 //whenever a suitable input is entered the color of the text will change
+            }
         }
         taskDAO.open();
 
@@ -161,7 +162,6 @@ public class AddTask extends BottomSheetDialogFragment {
         if(activity instanceof DialogCloseListener){
             //the DialogCloseListener is an interface which will be responsible for database tasks
             //like recycler view, refreshing and updating the view
-
             ((DialogCloseListener)activity).handleDialogClose(dialog);
         }
     }

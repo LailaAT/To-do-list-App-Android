@@ -68,6 +68,7 @@ public class AddTask extends BottomSheetDialogFragment {
         durationText = requireView().findViewById(R.id.durationText);
         saveButton = getView().findViewById(R.id.newTaskButton);
         taskDAO = new TaskDAO(getContext());
+        String taskName;
 
         boolean isUpdate = false;
         //whether a new task is being created or an old one is being updated
@@ -77,11 +78,17 @@ public class AddTask extends BottomSheetDialogFragment {
         //this allows me to get the data from the adapter and then pass it on to the dialog sheet fragment
         if(bundle != null) {
             isUpdate = true;
-            String taskName = bundle.getString("taskName");     // AT: ok to have two variables with the same name "task" ?
+            taskName = bundle.getString("taskName");     // AT: ok to have two variables with the same name "task" ?
             long num = bundle.getLong("duration");
             newTaskText.setText(taskName);
-            assert taskName != null;
-            if ((taskName.length() > 0) && (num > 0)) {
+            /*
+            try {
+                assert taskName != null;
+            } catch (AssertionError e){
+                System.out.println(e);
+            }
+            */
+            if (taskName != null && (taskName.length() > 0) && (num > 0)) {
                 //if the user inputted text
                 saveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.pastelBrown));
                 //whenever a suitable input is entered the color of the text will change

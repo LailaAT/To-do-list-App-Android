@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
@@ -33,6 +34,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     private TaskDAO taskDAO;
     //defining the database
 
+
     public ToDoAdapter(MainActivity activity, Database db, TaskDAO taskDAO) {
         this.activity = activity;
         //this.db = db;
@@ -47,6 +49,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     }
 
     public void onBindViewHolder(ViewHolder holder, int position) {
+
         taskDAO.open();
         //opening the database
         TasksModel item = todoList.get(position);
@@ -66,6 +69,8 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
             }
         });
         //this function will update the task status
+
+
     }
 
     @Override
@@ -109,6 +114,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         notifyItemRemoved(position);
         //updates recycler view
     }
+
 
     //A recycler view is class that displays a collection of data
     //when you add it it would be like any other UI element

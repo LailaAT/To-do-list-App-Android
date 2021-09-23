@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import com.example.doitcheckit.Adapter.ToDoAdapter;
 import com.example.doitcheckit.Model.TasksModel;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     private ToDoAdapter taskAdapter;
 
     private FloatingActionButton addtaskButton;
+    private Button start;
     private List<TasksModel>taskList;
 
     private Database db;
@@ -36,6 +38,14 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
+
+        start = (Button) findViewById(R.id.startButton);
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCountdown();
+            }
+        });
 
         db = new Database(this);
         taskDAO = new TaskDAO(this);
@@ -71,6 +81,10 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     }
 
 
+    public void openCountdown(){
+        Intent intent = new Intent(MainActivity.this, Countdown.class);
+        startActivity(intent);
+    }
     @Override
     public void handleDialogClose(DialogInterface dialog){
         taskList = taskDAO.getAllTasks();

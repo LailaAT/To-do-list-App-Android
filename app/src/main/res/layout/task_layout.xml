@@ -23,7 +23,7 @@
             android:buttonTint="#C1815B"/>
 
         <Button
-            android:id="@+id/startbutton"
+            android:id="@+id/startButton"
             android:layout_width="wrap_content"
             android:layout_height="36dp"
             android:layout_below="@id/todoCheckBox"

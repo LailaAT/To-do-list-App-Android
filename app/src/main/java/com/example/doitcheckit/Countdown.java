@@ -1,7 +1,10 @@
 package com.example.doitcheckit;
 
+import android.app.Activity;
 import android.os.CountDownTimer;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,13 +20,14 @@ import com.example.doitcheckit.Model.TasksModel;
 import com.example.doitcheckit.Utils.Database;
 import com.example.doitcheckit.Utils.TaskDAO;
 
+import java.util.List;
 import java.util.Locale;
 
 public class Countdown extends AppCompatActivity {
 
     //Objects
     private TasksModel task;
-
+    private List<TasksModel> todoList;
 
     private EditText durationInput;
 
@@ -40,6 +44,8 @@ public class Countdown extends AppCompatActivity {
 
     private boolean timerRunning;
     //if timer is running or not
+
+    //integer values for the timer
     private long startTime;
     private long timeLeft = startTime;
     private long endTime;
@@ -48,18 +54,25 @@ public class Countdown extends AppCompatActivity {
     private Database db;
     private TaskDAO taskDAO;
 
+
+
+    public Countdown(TaskDAO taskDAO){
+        this.taskDAO = taskDAO;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.countdown);
         //interface
-        durationInput = findViewById(R.id.durationText);
         countdownView = findViewById(R.id.countdownText);
 
         startPause = findViewById(R.id.startButton);
         reset = findViewById(R.id.resetButton);
         //id's initially created in interface
 
+        //duration the countdown will use
+        setTime(task.getDuration());
 
         startPause.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,18 +97,32 @@ public class Countdown extends AppCompatActivity {
 
     }
 
-
-    public void getTaskDuration(int position){
+    public void onStart(){
 
     }
 
 
-    private void setTime(long milliseconds){
+    public void getTaskDuration(int position){
+        taskDAO.open();
+        TasksModel item = todoList.get(position);
+        Bundle bundle = new Bundle();
+        bundle.putInt("id", item.getId());
+        bundle.putLong("duration", item.getDuration());
+    }
+
+    public void setTime(long milliseconds){
+        startTime  = milliseconds;
+        resetTimer();
+        closeKeyboard();
+    }
+
+
+    /*private void setTime(long milliseconds){
         startTime = milliseconds;
         resetTimer();
         //this will update countdown time and text
         closeKeyboard();
-    }
+    }*/
 
     private void startTimer(){
         endTime = System.currentTimeMillis() + timeLeft;

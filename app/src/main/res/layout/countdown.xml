@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/countdownLayout"
     android:background="@drawable/countdown_background">
 
     <TextView
@@ -18,7 +19,7 @@
         />
 
     <Button
-        android:id="@+id/startButton"
+        android:id="@+id/startPauseButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/countdownText"
@@ -33,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/countdownText"
         android:layout_marginStart="11dp"
-        android:layout_toEndOf="@+id/startButton"
+        android:layout_toEndOf="@+id/startPauseButton"
         android:text="reset"
         android:visibility="invisible"
         tools:visibility="visible"

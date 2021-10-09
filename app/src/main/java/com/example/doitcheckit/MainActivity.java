@@ -39,13 +39,13 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
-        start = (Button) findViewById(R.id.startButton);
+        /*start = (Button) findViewById(R.id.startButton);
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openCountdown();
             }
-        });
+        });*/
 
         db = new Database(this);
         taskDAO = new TaskDAO(this);

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.example.doitcheckit.Countdown;
+import com.example.doitcheckit.DialogCloseListener;
 import com.example.doitcheckit.MainActivity;
 import com.example.doitcheckit.R;
 

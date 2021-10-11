@@ -55,11 +55,6 @@ public class Countdown extends AppCompatActivity {
     private TaskDAO taskDAO;
 
 
-
-    public Countdown(TaskDAO taskDAO){
-        this.taskDAO = taskDAO;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -97,9 +92,7 @@ public class Countdown extends AppCompatActivity {
 
     }
 
-    public void onStart(){
-
-    }
+    //public void onStart(){ }
 
 
     public void getTaskDuration(int position){

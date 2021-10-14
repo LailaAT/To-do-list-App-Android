@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class TaskItem extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class TaskItem  {
     private Context context;
     private Button start;
     private ArrayList<TasksModel> taskList;
@@ -27,20 +27,9 @@ public class TaskItem extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         this.taskList = taskList;
     }
 
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_layout, parent, false);
-        //return new Viewholder(view);
-    }
 
-    @Override
-    public void onBindViewHolder(@NonNull @NotNull RecyclerView.ViewHolder holder, int position) {
 
-    }
 
-    @Override
-    public int getItemCount() {
-        return 0;
-    }
     /*public TaskItem(@NonNull @NotNull Context context) {
         super(context);
         start = findViewById(R.id.startButton);

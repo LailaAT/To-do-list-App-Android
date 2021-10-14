@@ -29,10 +29,8 @@ public class Countdown extends AppCompatActivity {
     private TasksModel task;
     private List<TasksModel> todoList;
 
-    private EditText durationInput;
-
-    private TextView countdownView;
     //attribute for countdown text
+    private TextView countdownView;
 
     //Buttons
     private Button startPause;
@@ -61,7 +59,6 @@ public class Countdown extends AppCompatActivity {
         setContentView(R.layout.countdown);
         //interface
         countdownView = findViewById(R.id.countdownText);
-
         startPause = findViewById(R.id.startButton);
         reset = findViewById(R.id.resetButton);
         //id's initially created in interface
@@ -172,13 +169,13 @@ public class Countdown extends AppCompatActivity {
 
     private void updateInterface(){
         if(timerRunning){
-            durationInput.setVisibility(View.INVISIBLE);
+            //durationInput.setVisibility(View.INVISIBLE);
             //making sure user can't change duration while countdowon is in action
             reset.setVisibility(View.INVISIBLE);
             startPause.setText("Pause");
             //the user can only pause timer while it's running
         } else{
-            durationInput.setVisibility(View.VISIBLE);
+            //durationInput.setVisibility(View.VISIBLE);
             startPause.setText("Start");
             if(timeLeft < 1000){
                 startPause.setVisibility(View.INVISIBLE);

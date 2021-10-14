@@ -11,7 +11,8 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:id="@+id/taskMain">
         <CheckBox
             android:id="@+id/todoCheckBox"
             android:layout_width="wrap_content"
@@ -21,6 +22,15 @@
             android:paddingStart="8dp"
             android:checked="false"
             android:buttonTint="#C1815B"/>
+
+        <TextView
+            android:id="@+id/duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/todoCheckBox"
+            android:layout_margin="10dp"
+            android:text="90 min"
+            />
 
         <Button
             android:id="@+id/startButton"

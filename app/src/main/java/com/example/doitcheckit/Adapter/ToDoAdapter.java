@@ -34,11 +34,14 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     private TaskDAO taskDAO;
     //defining the database
 
+    private Button startButton;
 
-    public ToDoAdapter(MainActivity activity, Database db, TaskDAO taskDAO) {
+
+    public ToDoAdapter(MainActivity activity, Database db, TaskDAO taskDAO, Button startButton) {
         this.activity = activity;
         //this.db = db;
         this.taskDAO = taskDAO;
+        this.startButton = startButton;
     }
 
     //ViewHolder allows the access of each list item without the need to look up for them
@@ -93,6 +96,10 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     public Context getContext(){
         return activity;
     }
+
+    public void startCountdown(){
+    }
+
 
     //allows you to edit task
     public void editItem(int position){

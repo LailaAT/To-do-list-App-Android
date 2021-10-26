@@ -88,10 +88,14 @@ public class AddTask extends BottomSheetDialogFragment {
                 System.out.println(e);
             }
             */
-            if (taskName != null && (taskName.length() > 0) && (num > 0)) {
-                //if the user inputted text
-                saveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.pastelBrown));
-                //whenever a suitable input is entered the color of the text will change
+            int nameLen = taskName.length();
+            if (nameLen > 0 && nameLen < 50) {
+                System.out.println("This is working");
+                if(num > 0 && num < 120) {
+                    //if the user inputted text
+                    saveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.pastelBrown));
+                    //whenever a suitable input is entered the color of the text will change
+                }
             }
         }
         taskDAO.open();
@@ -101,19 +105,36 @@ public class AddTask extends BottomSheetDialogFragment {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.toString().equals("")){
-                    saveButton.setEnabled(false);
-                    saveButton.setTextColor(Color.GRAY);
-                }else{
+                long duration = Long.parseLong(durationText.getText().toString());
+                if((s.length() > 0 && s.length() < 50) && (duration > 0 && duration < 120)){
                     saveButton.setEnabled(true);
                     saveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.pastelBrown));
+                }else{
+                    saveButton.setEnabled(false);
+                    saveButton.setTextColor(Color.GRAY);
                 }
             }
             @Override
             public void afterTextChanged(Editable s) { }
         });
 
-
+/*        durationText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                long duration = Long.parseLong(s.toString());
+                if (duration > 0 && duration < 120) {
+                    saveButton.setEnabled(false);
+                    saveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.pastelBrown));
+                } else{
+                    saveButton.setEnabled(false);
+                    saveButton.setTextColor(Color.GRAY);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });*/
 
         final boolean finalIsUpdate = isUpdate;
         saveButton.setOnClickListener(new View.OnClickListener() {

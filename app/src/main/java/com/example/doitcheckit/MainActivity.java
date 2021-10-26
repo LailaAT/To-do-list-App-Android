@@ -78,17 +78,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
             }
         });
 
-        start = findViewById(R.id.startButton);
-
-        start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), Countdown.class);
-            }
-        });
-
     }
-
 
     public void openCountdown(){
         Intent intent = new Intent(MainActivity.this, Countdown.class);

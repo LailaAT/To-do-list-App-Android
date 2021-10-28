@@ -54,17 +54,17 @@ public class Countdown extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.countdown);
         //interface
         countdownView = findViewById(R.id.countdownText);
-        startPause = findViewById(R.id.startButton);
+        startPause = findViewById(R.id.startPauseButton);
         reset = findViewById(R.id.resetButton);
         //id's initially created in interface
 
         //duration the countdown will use
-        setTime(task.getDuration());
+        //setTime(task.getDuration());
 
         startPause.setOnClickListener(new View.OnClickListener() {
             @Override

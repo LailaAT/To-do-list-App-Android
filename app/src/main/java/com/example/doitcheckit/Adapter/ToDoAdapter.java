@@ -1,6 +1,7 @@
 package com.example.doitcheckit.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,10 +9,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doitcheckit.AddTask;
+import com.example.doitcheckit.Countdown;
 import com.example.doitcheckit.MainActivity;
 import com.example.doitcheckit.Model.TasksModel;
 import com.example.doitcheckit.R;
@@ -34,14 +37,13 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     private TaskDAO taskDAO;
     //defining the database
 
-    private Button startButton;
 
 
     public ToDoAdapter(MainActivity activity, Database db, TaskDAO taskDAO, Button startButton) {
+
         this.activity = activity;
         //this.db = db;
         this.taskDAO = taskDAO;
-        this.startButton = startButton;
     }
 
     //ViewHolder allows the access of each list item without the need to look up for them
@@ -73,8 +75,14 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         });
         //this function will update the task status
 
-
+        holder.startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(v.getContext(), Countdown.class);
+            }
+        });
     }
+
 
     @Override
     public int getItemCount() {
@@ -97,8 +105,6 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         return activity;
     }
 
-    public void startCountdown(){
-    }
 
 
     //allows you to edit task
@@ -127,9 +133,13 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     //when you add it it would be like any other UI element
     public static class ViewHolder extends RecyclerView.ViewHolder{
         CheckBox task;
+        Button startButton;
         ViewHolder(View view){
             super(view);
             task = view.findViewById(R.id.todoCheckBox);
+            startButton = (Button) view.findViewById(R.id.startButton);
         }
     }
+
+
 }

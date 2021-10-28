@@ -80,10 +80,8 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
     }
 
-    public void openCountdown(){
-        Intent intent = new Intent(MainActivity.this, Countdown.class);
-        startActivity(intent);
-    }
+    //public void openCountdown(){ }
+
     @Override
     public void handleDialogClose(DialogInterface dialog){
         taskList = taskDAO.getAllTasks();

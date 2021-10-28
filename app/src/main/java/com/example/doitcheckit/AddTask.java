@@ -105,8 +105,8 @@ public class AddTask extends BottomSheetDialogFragment {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                long duration = Long.parseLong(durationText.getText().toString());
-                if((s.length() > 0 && s.length() < 50) && (duration > 0 && duration < 120)){
+                //long duration = Long.parseLong(durationText.getText().toString());
+                if((s.length() > 0 && s.length() < 50)){ //&& (duration > 0 && duration < 120)){
                     saveButton.setEnabled(true);
                     saveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.pastelBrown));
                 }else{

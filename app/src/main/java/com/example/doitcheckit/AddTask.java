@@ -79,8 +79,9 @@ public class AddTask extends BottomSheetDialogFragment {
         if(bundle != null) {
             isUpdate = true;
             taskName = bundle.getString("taskName");     // AT: ok to have two variables with the same name "task" ?
-            long num = bundle.getLong("duration");
+            int num = bundle.getInt("duration");
             newTaskText.setText(taskName);
+            durationText.setText(String.valueOf(num));
             /*
             try {
                 assert taskName != null;

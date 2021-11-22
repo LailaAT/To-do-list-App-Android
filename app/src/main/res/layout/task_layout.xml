@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/todoCheckBox"
             android:layout_margin="10dp"
-            android:text="90 min"
+            android:text="000"
             />
 
         <Button

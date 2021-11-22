@@ -3,6 +3,7 @@ package com.example.doitcheckit.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import java.util.List;
 //import kotlinx.coroutines.scheduling.Task;
 
 public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
+    public static final String TAG = "RecyclerViewAdapter";
     private List<TasksModel> todoList;
     //this will be a list of our todo's
 
@@ -78,7 +80,9 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         holder.startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(TAG, "onClick: clicked on: " + todoList.get(position));
                 Intent intent  = new Intent(v.getContext(), Countdown.class);
+                v.getContext().startActivity(intent);
             }
         });
     }

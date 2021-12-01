@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,7 +30,7 @@ public class AddTask extends BottomSheetDialogFragment {
 
     public static final String TAG = "ActionBottomDialog";
     private EditText newTaskText;
-    private EditText durationText;
+    private TextView duration;
     private Button saveButton;
     //private Database db;
     private TaskDAO taskDAO;
@@ -65,10 +66,11 @@ public class AddTask extends BottomSheetDialogFragment {
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
         newTaskText = requireView().findViewById(R.id.newTaskText);
-        durationText = requireView().findViewById(R.id.durationText);
+        duration = requireView().findViewById(R.id.duration);
         saveButton = getView().findViewById(R.id.newTaskButton);
         taskDAO = new TaskDAO(getContext());
         String taskName;
+        int num;
 
         boolean isUpdate = false;
         //whether a new task is being created or an old one is being updated
@@ -78,10 +80,11 @@ public class AddTask extends BottomSheetDialogFragment {
         //this allows me to get the data from the adapter and then pass it on to the dialog sheet fragment
         if(bundle != null) {
             isUpdate = true;
-            taskName = bundle.getString("taskName");     // AT: ok to have two variables with the same name "task" ?
-            int num = bundle.getInt("duration");
+            taskName = bundle.getString("taskName");
+            num = bundle.getInt("duration");
+            String numString = String.valueOf(num);
             newTaskText.setText(taskName);
-            durationText.setText(String.valueOf(num));
+            duration.setText(numString);
             /*
             try {
                 assert taskName != null;
@@ -142,7 +145,7 @@ public class AddTask extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 String text = newTaskText.getText().toString();
-                long num = Long.parseLong(durationText.getText().toString());
+                long num = Long.parseLong(duration.getText().toString());
                         //getLong.parseLong(String.valueOf(durationText.getText()));
 
                 if(finalIsUpdate){

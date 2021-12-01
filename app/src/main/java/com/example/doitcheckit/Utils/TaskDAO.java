@@ -73,7 +73,7 @@ public class TaskDAO {
                         TasksModel task = new TasksModel();
                         task.setId(cur.getInt(cur.getColumnIndex(Database.TASK_ID)));
                         task.setTaskName(cur.getString(cur.getColumnIndex(Database.TASK_NAME)));
-                        task.setDuration(cur.getLong(cur.getColumnIndex(Database.DURATION)));
+                        task.setDuration(cur.getInt(cur.getColumnIndex(Database.DURATION)));
                         task.setStatus(cur.getInt(cur.getColumnIndex(Database.STATUS)));
                         taskList.add(task);
                     }while(cur.moveToNext());

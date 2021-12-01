@@ -64,6 +64,8 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         holder.task.setText(item.getTaskName());
         holder.task.setChecked(toBoolean(item.getStatus()));
         //this needs a boolean so we need to create a method to convert status into a boolean
+        String dur = String.valueOf(item.getDuration());
+        holder.durationT.setText(dur);
 
         holder.task.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -138,10 +140,12 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder{
         CheckBox task;
         Button startButton;
+        TextView durationT;
         ViewHolder(View view){
             super(view);
             task = view.findViewById(R.id.todoCheckBox);
             startButton = (Button) view.findViewById(R.id.startButton);
+            durationT = (TextView) view.findViewById(R.id.duration);
         }
     }
 

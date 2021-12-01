@@ -8,7 +8,7 @@ public class TasksModel {
 
     //private ListsModel category;
     //the category will be the list the task is added to
-    private long duration;
+    private int duration;
     //whether a task was completed or not
     //true for completed
 
@@ -37,7 +37,7 @@ public class TasksModel {
         this.taskName = task;
     }
 
-    public void setDuration(long duration){ this.duration = duration; }
+    public void setDuration(int duration){ this.duration = duration; }
 
     public long getDuration(){ return this.duration; }
 

@@ -66,7 +66,7 @@ public class AddTask extends BottomSheetDialogFragment {
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
         newTaskText = requireView().findViewById(R.id.newTaskText);
-        duration = requireView().findViewById(R.id.duration);
+        duration = requireView().findViewById(R.id.durationText);
         saveButton = getView().findViewById(R.id.newTaskButton);
         taskDAO = new TaskDAO(getContext());
         String taskName;
@@ -145,7 +145,7 @@ public class AddTask extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 String text = newTaskText.getText().toString();
-                long num = Long.parseLong(duration.getText().toString());
+                int num = Integer.parseInt(duration.getText().toString());
                         //getLong.parseLong(String.valueOf(durationText.getText()));
 
                 if(finalIsUpdate){
@@ -174,7 +174,7 @@ public class AddTask extends BottomSheetDialogFragment {
         task = new TasksModel();
         task.setStatus(0);
         task.setTaskName(text);
-        task.setDuration(num);
+        //task.setDuration(num);
         taskDAO.insertTask(task);
     }
 

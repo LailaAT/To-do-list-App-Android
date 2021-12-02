@@ -35,7 +35,7 @@ public class ItemHelper extends ItemTouchHelper.SimpleCallback {
         if(position == ItemTouchHelper.LEFT){
             AlertDialog.Builder builder = new AlertDialog.Builder(adapter.getContext());
             builder.setTitle("Delete Task");
-            builder.setMessage("Are you sure you want to delete this task, it will be permanently deleted?");
+            builder.setMessage("Are you sure you want to delete this task ?");
             builder.setPositiveButton("Confirm",
                     new DialogInterface.OnClickListener() {
                         @Override
@@ -79,11 +79,12 @@ public class ItemHelper extends ItemTouchHelper.SimpleCallback {
             background = new ColorDrawable(Color.RED);
         }
 
+        assert icon != null;
         int iconMargin = (itemView.getHeight() - icon.getIntrinsicHeight()) /2;
         int iconTop = itemView.getTop() + (itemView.getHeight() - icon.getIntrinsicHeight()) /2;
         int iconBottom = iconTop + icon.getIntrinsicHeight();
 
-        if(dx > 0){ //swiping right
+        if(dx > 0){ //swiping to the right
             int iconLeft = itemView.getLeft() + iconMargin;
             int iconRight = itemView.getLeft() + iconMargin + icon.getIntrinsicWidth();
 
@@ -91,7 +92,7 @@ public class ItemHelper extends ItemTouchHelper.SimpleCallback {
             background.setBounds(itemView.getLeft(), itemView.getTop(),
                     itemView.getLeft() + ((int)dx) + backgroundCornerOffset, itemView.getBottom());
         }
-        else if(dx < 0){
+        else if(dx < 0){ //swiping to the left
             int iconLeft = itemView.getRight() - iconMargin - icon.getIntrinsicWidth();
             int iconRight = itemView.getRight() - iconMargin;
             icon.setBounds(iconLeft, iconTop, iconRight, iconBottom);

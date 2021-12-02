@@ -38,7 +38,6 @@ public class AddTask extends BottomSheetDialogFragment {
     //object
     TasksModel task;
 
-    // AT: task vs taskDAO
 
     public static AddTask newInstance() {
         return new AddTask();
@@ -85,16 +84,9 @@ public class AddTask extends BottomSheetDialogFragment {
             String numString = String.valueOf(num);
             newTaskText.setText(taskName);
             duration.setText(numString);
-            /*
-            try {
-                assert taskName != null;
-            } catch (AssertionError e){
-                System.out.println(e);
-            }
-            */
-            int nameLen = taskName.length();
-            if (nameLen > 0 && nameLen < 50) {
-                System.out.println("This is working");
+
+            //assert taskName != null;
+            if (taskName != null) { //taskName.length() > 0 && taskName.length() < 50) {
                 if(num > 0 && num < 120) {
                     //if the user inputted text
                     saveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.pastelBrown));

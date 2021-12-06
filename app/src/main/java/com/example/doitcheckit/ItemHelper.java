@@ -29,10 +29,13 @@ public class ItemHelper extends ItemTouchHelper.SimpleCallback {
         return false;
     }
 
+    public void onSwiped02(final RecyclerView.ViewHolder viewHolder, int direction){
+    }
+
     @Override
     public void onSwiped(final RecyclerView.ViewHolder viewHolder, int direction){
         final int position = viewHolder.getAdapterPosition();
-        if(position == ItemTouchHelper.LEFT){
+        if(direction == ItemTouchHelper.LEFT){ //if(position == ItemTouchHelper.LEFT (mistake, mention in write up)
             AlertDialog.Builder builder = new AlertDialog.Builder(adapter.getContext());
             builder.setTitle("Delete Task");
             builder.setMessage("Are you sure you want to delete this task ?");

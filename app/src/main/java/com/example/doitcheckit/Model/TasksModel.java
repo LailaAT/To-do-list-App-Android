@@ -39,7 +39,7 @@ public class TasksModel {
 
     public void setDuration(int duration){ this.duration = duration; }
 
-    public long getDuration(){ return this.duration; }
+    public int getDuration(){ return this.duration; }
 
     //public ListsModel getCategory() { return category; }
 

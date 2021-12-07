@@ -12,7 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp">
-
         <TextView
             android:id="@+id/listText"
             android:layout_width="match_parent"
@@ -22,9 +21,8 @@
             android:drawablePadding="10dp"
             android:gravity="left"
             android:layout_marginHorizontal="@android:dimen/app_icon_size"
-            android:text="List example blah blah"
+            android:text="List example"
             android:textColor="#000000" />
-
     </RelativeLayout>
 
     <Button
@@ -36,3 +34,4 @@
         android:drawableLeft="@drawable/lists" />
 
 </androidx.cardview.widget.CardView>
+

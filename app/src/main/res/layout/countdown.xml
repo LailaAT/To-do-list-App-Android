@@ -15,8 +15,7 @@
         android:layout_centerVertical="true"
         android:text="00:00:00"
         android:textColor="@android:color/black"
-        android:textSize="60sp"
-        />
+        android:textSize="60sp" />
 
     <Button
         android:id="@+id/startPauseButton"
@@ -25,8 +24,7 @@
         android:layout_below="@+id/countdownText"
         android:layout_centerHorizontal="true"
         android:text="Start"
-        android:backgroundTint="#7FA0B1"
-        />
+        android:backgroundTint="#7FA0B1" />
 
     <Button
         android:id="@+id/resetButton"

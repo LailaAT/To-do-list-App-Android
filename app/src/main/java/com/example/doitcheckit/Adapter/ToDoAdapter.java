@@ -35,16 +35,11 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     private MainActivity activity;
     //attribute for main activity
 
-    //private Database db;
+    //database for tasks
     private TaskDAO taskDAO;
-    //defining the database
-
-
 
     public ToDoAdapter(MainActivity activity, Database db, TaskDAO taskDAO, Button startButton) {
-
         this.activity = activity;
-        //this.db = db;
         this.taskDAO = taskDAO;
     }
 
@@ -56,7 +51,6 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     }
 
     public void onBindViewHolder(ViewHolder holder, int position) {
-
         taskDAO.open();
         //opening the database
         TasksModel item = todoList.get(position);

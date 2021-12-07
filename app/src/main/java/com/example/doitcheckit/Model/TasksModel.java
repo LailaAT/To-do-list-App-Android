@@ -1,18 +1,16 @@
 package com.example.doitcheckit.Model;
 public class TasksModel {
     private int id, status; //taskSuccess;
-    //the id which we will refer to in the database
-    //status is a type of boolean variable but we can't use a boolean data type in this case
-    //so we will use 0 for false and 1 for true
-    private String taskName; //color, user;
-
+    //the id will be used in the database
+    //status should be boolean but we can't use boolean, so we're using int in this case
+    //0 for false and 1 for true
+    private String taskName;
     //private ListsModel category;
     //the category will be the list the task is added to
-    private int duration;
+    private int duration; //duration of a task will be an integer value
+    //private int taskSuccess;
     //whether a task was completed or not
     //true for completed
-
-
     public int getId() {
         return id;
     }

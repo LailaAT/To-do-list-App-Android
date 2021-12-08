@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.View;
-
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,9 +28,6 @@ public class ItemHelper extends ItemTouchHelper.SimpleCallback {
         return false;
     }
 
-    public void onSwiped02(final RecyclerView.ViewHolder viewHolder, int direction){
-    }
-
     @Override
     public void onSwiped(final RecyclerView.ViewHolder viewHolder, int direction){
         final int position = viewHolder.getAdapterPosition();
@@ -43,8 +39,7 @@ public class ItemHelper extends ItemTouchHelper.SimpleCallback {
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            adapter.deleteItem(position);
-                            //deletes task
+                            adapter.deleteItem(position); //deletes task
                         }
                     });
 
@@ -66,7 +61,6 @@ public class ItemHelper extends ItemTouchHelper.SimpleCallback {
     public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
                             float dx, float dy, int actionState, boolean isCurrentlyActive){
         super.onChildDraw(c, recyclerView, viewHolder,dx, dy, actionState, isCurrentlyActive);
-
         Drawable icon;
         ColorDrawable background;
 
@@ -90,7 +84,6 @@ public class ItemHelper extends ItemTouchHelper.SimpleCallback {
         if(dx > 0){ //swiping to the right
             int iconLeft = itemView.getLeft() + iconMargin;
             int iconRight = itemView.getLeft() + iconMargin + icon.getIntrinsicWidth();
-
             icon.setBounds(iconLeft, iconTop, iconRight, iconBottom);
             background.setBounds(itemView.getLeft(), itemView.getTop(),
                     itemView.getLeft() + ((int)dx) + backgroundCornerOffset, itemView.getBottom());
@@ -99,17 +92,13 @@ public class ItemHelper extends ItemTouchHelper.SimpleCallback {
             int iconLeft = itemView.getRight() - iconMargin - icon.getIntrinsicWidth();
             int iconRight = itemView.getRight() - iconMargin;
             icon.setBounds(iconLeft, iconTop, iconRight, iconBottom);
-
             background.setBounds(itemView.getRight() + ((int) dx) -backgroundCornerOffset, itemView.getTop(),
                     itemView.getRight(), itemView.getBottom());
         }
-
         else{
             background.setBounds(0,0,0,0);
         }
-
         background.draw(c);
         icon.draw(c);
-
     }
 }

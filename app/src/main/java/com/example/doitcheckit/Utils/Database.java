@@ -1,5 +1,4 @@
 package com.example.doitcheckit.Utils;
-
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -13,12 +12,8 @@ public class Database extends SQLiteOpenHelper {
     public static final String STATUS = "status";
     //public static final String TASK_SUCCESS = "taskSuccess";
     public static final String TASK_NAME = "taskName";
-    //public static final String CATEGORY = "category";
-    //public static final String TASK_COLOR = "color";
-    //public static final String USER = "user";
-    //This will be an id from another table
+    //public static final String CATEGORY = "category"; //id from different table
     public static final String DURATION = "duration";
-
 
     //list variables
     public static final String LIST_TABLE = "listTable";
@@ -36,11 +31,9 @@ public class Database extends SQLiteOpenHelper {
             + TASK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + TASK_NAME + " TEXT, "
             + DURATION + " INTEGER, "
-            //+ CATEGORY + " TEXT, "
+            //+ CATEGORY + " INTEGER, "
             + STATUS + " INTEGER) ";
             //+ TASK_SUCCESS + " INTEGER)";
-            //+ TASK_COLOR + " TEXT, "
-            //+ USER + " INTEGER NOT NULL)";
 
     //list table creation
     private static final String CREATE_LIST_TABLE = "CREATE TABLE " + LIST_TABLE + "("
@@ -66,7 +59,6 @@ public class Database extends SQLiteOpenHelper {
         //clearing the data
         db.execSQL("DROP TABLE IF EXISTS " + TASK_TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + LIST_TABLE);
-
         //recreating the table
         onCreate(db);
     }
@@ -74,7 +66,4 @@ public class Database extends SQLiteOpenHelper {
     public Database(Context context, String name, SQLiteDatabase.CursorFactory factory, int version){
         super(context, NAME, factory, VERSION);
     }
-
-
-
 }

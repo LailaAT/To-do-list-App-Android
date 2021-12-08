@@ -1,6 +1,4 @@
 package com.example.doitcheckit.Utils;
-
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -9,10 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.ContactsContract;
 import android.util.Log;
-
-import com.example.doitcheckit.Model.ListsModel;
 import com.example.doitcheckit.Model.TasksModel;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,14 +22,11 @@ public class TaskDAO {
     private String[] columns = { Database.TASK_ID,      //
             Database.STATUS, //Database.TASK_SUCCESS,
             Database.TASK_NAME, //Database.CATEGORY,
-            //Database.TASK_COLOR, Database.USER,
             Database.DURATION };
-
 
     public TaskDAO(Context mContext){
         this.mContext = mContext;
         helper = new Database(mContext);
-
         //attempting to open database
         try{
             open();
@@ -44,16 +36,14 @@ public class TaskDAO {
         }
     }
 
-    public void open() throws SQLException {
-        db = helper.getWritableDatabase();      //
-    }
+    public void open() throws SQLException { db = helper.getWritableDatabase(); }
 
     public void close(){ helper.close(); }
 
 
     public void insertTask(TasksModel task){
         ContentValues cv = new ContentValues();
-        cv.put(helper.TASK_NAME, task.getTaskName()); // at: fix
+        cv.put(helper.TASK_NAME, task.getTaskName());
         cv.put(helper.STATUS, 0);
         cv.put(helper.DURATION, task.getDuration());
         db.insertOrThrow(helper.TASK_TABLE, null, cv);

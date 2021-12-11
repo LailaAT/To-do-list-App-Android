@@ -29,16 +29,11 @@ import java.util.List;
 
 public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     public static final String TAG = "RecyclerViewAdapter";
-    private List<TasksModel> todoList;
-    //this will be a list of our todo's
+    private List<TasksModel> todoList; //list of tasks
+    private MainActivity activity; //attribute for main activity
+    private TaskDAO taskDAO;  //database handler for tasks
 
-    private MainActivity activity;
-    //attribute for main activity
-
-    //database for tasks
-    private TaskDAO taskDAO;
-
-    public ToDoAdapter(MainActivity activity, Database db, TaskDAO taskDAO, Button startButton) {
+    public ToDoAdapter(MainActivity activity, TaskDAO taskDAO) {
         this.activity = activity;
         this.taskDAO = taskDAO;
     }
@@ -51,16 +46,13 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     }
 
     public void onBindViewHolder(ViewHolder holder, int position) {
-        taskDAO.open();
-        //opening the database
-        TasksModel item = todoList.get(position);
-        //getting the position of items in a list
+        taskDAO.open();//opening the database
+        TasksModel item = todoList.get(position); //getting the position of items in a list
         holder.task.setText(item.getTaskName());
         holder.task.setChecked(toBoolean(item.getStatus()));
         //this needs a boolean so we need to create a method to convert status into a boolean
         String dur = String.valueOf(item.getDuration());
         holder.durationT.setText(dur);
-
         holder.task.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -70,9 +62,8 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
                     taskDAO.updateStatus(item.getId(), 0);
                 }
             }
-        });
-        //this function will update the task status
-
+        });//this function will update the task status
+        //start button listener
         holder.startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,8 +96,6 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         return activity;
     }
 
-
-
     //allows you to edit task
     public void editItem(int position){
         TasksModel item = todoList.get(position);
@@ -128,7 +117,6 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         //updates recycler view
     }
 
-
     //A recycler view is class that displays a collection of data
     //when you add it it would be like any other UI element
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -142,6 +130,4 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
             durationT = (TextView) view.findViewById(R.id.duration);
         }
     }
-
-
 }

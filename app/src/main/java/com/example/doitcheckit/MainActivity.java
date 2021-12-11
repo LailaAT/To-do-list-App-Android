@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     private ToDoAdapter taskAdapter;
 
     private FloatingActionButton addtaskButton;
-    private Button start;
     private List<TasksModel>taskList;
 
     private Database db;
@@ -39,14 +38,6 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
-        /*start = (Button) findViewById(R.id.startButton);
-        start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openCountdown();
-            }
-        });*/
-
         db = new Database(this);
         taskDAO = new TaskDAO(this);
         taskDAO.open();
@@ -56,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         tasksRecyclerView = findViewById(R.id.tasksoverview);
         tasksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        taskAdapter = new ToDoAdapter(MainActivity.this, db, taskDAO, start);
+        taskAdapter = new ToDoAdapter(MainActivity.this, taskDAO);
         tasksRecyclerView.setAdapter(taskAdapter);
         //setting adapter to recycler view
 
@@ -74,13 +65,11 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
             @Override
             public void onClick(View v) {
                 AddTask.newInstance().show(getSupportFragmentManager(), AddTask.TAG);
-                //Intent intent = new Intent(v.getContext(), AddTask.class);
             }
         });
 
     }
 
-    //public void openCountdown(){ }
 
     @Override
     public void handleDialogClose(DialogInterface dialog){

@@ -34,7 +34,6 @@ public class AddTask extends BottomSheetDialogFragment {
     private Button saveButton;
     //private Database db;
     private TaskDAO taskDAO;
-
     //object
     TasksModel task;
 
@@ -43,7 +42,6 @@ public class AddTask extends BottomSheetDialogFragment {
         return new AddTask();
         //the new instance allows me to use the functions of this class in the main one
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -70,11 +68,9 @@ public class AddTask extends BottomSheetDialogFragment {
         taskDAO = new TaskDAO(getContext());
         String taskName;
         int num;
-
         boolean isUpdate = false;
         //whether a new task is being created or an old one is being updated
         //this variable helps distinguish between these two cases
-
         final Bundle bundle = getArguments();
         //this allows me to get the data from the adapter and then pass it on to the dialog sheet fragment
         if(bundle != null) {
@@ -84,9 +80,7 @@ public class AddTask extends BottomSheetDialogFragment {
             String numString = String.valueOf(num);
             newTaskText.setText(taskName);
             duration.setText(numString);
-
-            //assert taskName != null;
-            if (taskName != null) { //taskName.length() > 0 && taskName.length() < 50) {
+            if (taskName != null) { //taskName.length() > 0 && taskName.length() < 50)
                 if(num > 0 && num < 120) {
                     //if the user inputted text
                     saveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.pastelBrown));
@@ -101,7 +95,6 @@ public class AddTask extends BottomSheetDialogFragment {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //long duration = Long.parseLong(durationText.getText().toString());
                 if((s.length() > 0 && s.length() < 50)){ //&& (duration > 0 && duration < 120)){
                     saveButton.setEnabled(true);
                     saveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.pastelBrown));
@@ -113,33 +106,12 @@ public class AddTask extends BottomSheetDialogFragment {
             @Override
             public void afterTextChanged(Editable s) { }
         });
-
-/*        durationText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                long duration = Long.parseLong(s.toString());
-                if (duration > 0 && duration < 120) {
-                    saveButton.setEnabled(false);
-                    saveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.pastelBrown));
-                } else{
-                    saveButton.setEnabled(false);
-                    saveButton.setTextColor(Color.GRAY);
-                }
-            }
-            @Override
-            public void afterTextChanged(Editable s) {}
-        });*/
-
         final boolean finalIsUpdate = isUpdate;
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String text = newTaskText.getText().toString();
                 int num = Integer.parseInt(duration.getText().toString());
-                        //getLong.parseLong(String.valueOf(durationText.getText()));
-
                 if(finalIsUpdate){
                         taskDAO.updateTask(bundle.getInt("task_id"), text);
                         taskDAO.updateDuration(bundle.getInt("task_id"), num);
@@ -150,34 +122,9 @@ public class AddTask extends BottomSheetDialogFragment {
                     task.setDuration(num);
                     taskDAO.insertTask(task);
                 }
-
                 dismiss();
             }
         });
-
-    }
-
-    public void updateTask(Bundle bundle, boolean isUpdate, String text, int num){      // AT: why not defining this in the TaskDAO class?
-            taskDAO.updateTask(bundle.getInt("task_id"), text);
-            taskDAO.updateDuration(bundle.getInt("task_id"), num);
-    }
-
-    public void createTask(String text, long num, TaskDAO taskDAO){             // AT: why not defining this in the TaskDAO class?
-        task = new TasksModel();
-        task.setStatus(0);
-        task.setTaskName(text);
-        //task.setDuration(num);
-        taskDAO.insertTask(task);
-    }
-
-    public int toInteger(boolean x){
-        int num;
-        if(x == true){
-            num = 1;
-        } else{
-            num = 0;
-        }
-        return num;
     }
 
     @Override

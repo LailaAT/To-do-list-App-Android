@@ -5,7 +5,7 @@ public class TasksModel {
     //status should be boolean but we can't use boolean, so we're using int in this case
     //0 for false and 1 for true
     private String taskName;
-    //private ListsModel category;
+    private ListsModel category;
     //the category will be the list the task is added to
     private int duration; //duration of a task will be an integer value
     //private int taskSuccess;
@@ -39,9 +39,9 @@ public class TasksModel {
 
     public int getDuration(){ return this.duration; }
 
-    //public ListsModel getCategory() { return category; }
+    public ListsModel getCategory() { return category; }
 
-    //public void setCategory(ListsModel category) { this.category = category; }
+    public void setCategory(ListsModel category) { this.category = category; }
 
     //public int getTaskSuccess() { return taskSuccess; }
 

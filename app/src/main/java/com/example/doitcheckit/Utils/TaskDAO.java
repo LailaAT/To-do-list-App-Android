@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.ContactsContract;
 import android.util.Log;
+
+import com.example.doitcheckit.Model.ListsModel;
 import com.example.doitcheckit.Model.TasksModel;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +23,7 @@ public class TaskDAO {
     private Context mContext;
     private String[] columns = { Database.TASK_ID,      //
             Database.STATUS, //Database.TASK_SUCCESS,
-            Database.TASK_NAME, //Database.CATEGORY,
+            Database.TASK_NAME, Database.CATEGORY,
             Database.DURATION };
 
     public TaskDAO(Context mContext){
@@ -76,13 +78,13 @@ public class TaskDAO {
         return  taskList;
     }
 
-    /*public List<TasksModel> getTasksInList(int listId){
+    public List<TasksModel> getTasksInList(int listId){
         List<TasksModel>  tasksInList = new ArrayList<>();
-
+        //this will be the list that will contain the tasks
         Cursor cur = db.query(Database.TASK_TABLE, columns,
                 Database.CATEGORY + " = ?",
                 new String[] {String.valueOf(listId)}, null, null, null);
-
+        //does the task category equal the list id
         cur.moveToFirst();
         while(!cur.isAfterLast()){
             TasksModel task = cursorToTask(cur);
@@ -91,14 +93,15 @@ public class TaskDAO {
         }
         cur.close();
         return tasksInList;
-    }*/
+    }
 
-    /*private TasksModel cursorToTask(Cursor cur){
+    private TasksModel cursorToTask(Cursor cur){
         TasksModel task = new TasksModel();
+        //assigning the task attributes
         task.setId(cur.getInt(0));
         task.setStatus(cur.getInt(1));
         task.setTaskName(cur.getString(3));
-        task.setDuration(cur.getLong(7));
+        task.setDuration(cur.getInt(7));
 
         //getting the list by its id
         int listId = (int) cur.getLong(4);
@@ -106,9 +109,8 @@ public class TaskDAO {
         ListsModel list = listDAO.getListById(listId);
         if(list != null)
             task.setCategory(list);
-
         return task;
-    }*/
+    }
 
     public void updateStatus(int id, int status){
         ContentValues cv = new ContentValues();

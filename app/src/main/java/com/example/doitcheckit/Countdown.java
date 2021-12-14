@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class Countdown extends AppCompatActivity {
-
     //Objects
     private TasksModel task;
     private List<TasksModel> todoList;
@@ -34,22 +33,15 @@ public class Countdown extends AppCompatActivity {
 
     //Buttons
     private Button startPause;
-    private Button reset;
-    //defining the start/pause + reset button
+    private Button reset; //defining the start/pause + reset button
 
-    //Countdown
-    private CountDownTimer countdown;
-
-    private boolean timerRunning;
-    //if timer is running or not
-
+    private CountDownTimer countdown; //Countdown
+    private boolean timerRunning; //if timer is running or not
     //integer values for the timer
     private long startTime;
     private long timeLeft = startTime;
     private long endTime;
-
     //database variables
-    private Database db;
     private TaskDAO taskDAO;
 
 
@@ -78,7 +70,6 @@ public class Countdown extends AppCompatActivity {
                 }
             }
         });
-
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,6 +91,10 @@ public class Countdown extends AppCompatActivity {
         bundle.putLong("duration", item.getDuration());
     }
 
+    public int getDuration(int duration){
+      return duration;
+    }
+
     public void setTime(long milliseconds){
         startTime  = milliseconds;
         resetTimer();
@@ -117,19 +112,19 @@ public class Countdown extends AppCompatActivity {
     private void startTimer(){
         endTime = System.currentTimeMillis() + timeLeft;
         countdown = new CountDownTimer(timeLeft, 1000) {
+            //timer goes down by 1 second
             @Override
             public void onTick(long millisUntilFinished) {
                 timeLeft = millisUntilFinished;
                 updateText();
+                //calls the method to update the text
             }
-
             @Override
             public void onFinish() {
                 timerRunning = false;
                 updateInterface();
             }
         }.start();
-
         timerRunning = true;
         updateInterface();
         //reset button will not be shown while timer is running
@@ -169,13 +164,11 @@ public class Countdown extends AppCompatActivity {
 
     private void updateInterface(){
         if(timerRunning){
-            //durationInput.setVisibility(View.INVISIBLE);
-            //making sure user can't change duration while countdowon is in action
+           //reset button not needed when countdown is running
             reset.setVisibility(View.INVISIBLE);
             startPause.setText("Pause");
             //the user can only pause timer while it's running
         } else{
-            //durationInput.setVisibility(View.VISIBLE);
             startPause.setText("Start");
             if(timeLeft < 1000){
                 startPause.setVisibility(View.INVISIBLE);

@@ -1,5 +1,4 @@
 package com.example.doitcheckit.Utils;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -16,9 +15,7 @@ import java.util.List;
 public class ListDAO {
 
     public static final String TAG = "ListDAO";
-
     //attributes
-
     private SQLiteDatabase db;
     private Database helper;
     private Context mContext;
@@ -28,7 +25,6 @@ public class ListDAO {
     public ListDAO(Context mContext){
         this.mContext = mContext;
         helper = new Database(mContext);
-
         try{
             open();
         } catch(SQLException e){
@@ -38,13 +34,11 @@ public class ListDAO {
     }
 
     //opening the database
-    public void open() throws SQLException{
-        db = helper.getWritableDatabase();
-    }
+    public void open() throws SQLException{ db = helper.getWritableDatabase(); }
 
     public void close(){ helper.close(); }
 
-    //creting a list method
+    //creating a list method
     public void insertList(ListsModel list){
         ContentValues cv = new ContentValues();
         cv.put(Database.LIST_NAME, list.getListName());
@@ -57,7 +51,6 @@ public class ListDAO {
         List<ListsModel> categoryList = new ArrayList<>();
         Cursor cur = null;
         db.beginTransaction();
-
         try{
             cur = db.query(Database.LIST_TABLE, null, null,
                     null, null, null, null, null);

@@ -12,7 +12,7 @@ public class Database extends SQLiteOpenHelper {
     public static final String STATUS = "status";
     //public static final String TASK_SUCCESS = "taskSuccess";
     public static final String TASK_NAME = "taskName";
-    //public static final String CATEGORY = "category"; //id from different table
+    public static final String CATEGORY = "category"; //id from different table
     public static final String DURATION = "duration";
 
     //list variables
@@ -31,7 +31,7 @@ public class Database extends SQLiteOpenHelper {
             + TASK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + TASK_NAME + " TEXT, "
             + DURATION + " INTEGER, "
-            //+ CATEGORY + " INTEGER, "
+            + CATEGORY + " INTEGER, "
             + STATUS + " INTEGER) ";
             //+ TASK_SUCCESS + " INTEGER)";
 

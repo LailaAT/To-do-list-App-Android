@@ -27,6 +27,7 @@ public class Countdown extends AppCompatActivity {
     //Objects
     private TasksModel task;
     private List<TasksModel> todoList;
+    private Bundle bundle;
 
     //attribute for countdown text
     private TextView countdownView;
@@ -41,8 +42,13 @@ public class Countdown extends AppCompatActivity {
     private long startTime;
     private long timeLeft = startTime;
     private long endTime;
+    private int duration;
     //database variables
     private TaskDAO taskDAO;
+
+    public Countdown(int duration){
+        this.duration = duration;
+    }
 
 
     @Override
@@ -56,7 +62,7 @@ public class Countdown extends AppCompatActivity {
         //id's initially created in interface
 
         //duration the countdown will use
-        //setTime(task.getDuration());
+        startTime = getTaskDuration() * 60000;//converting it into milliseconds
 
         startPause.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,16 +89,12 @@ public class Countdown extends AppCompatActivity {
     //public void onStart(){ }
 
 
-    public void getTaskDuration(int position){
-        taskDAO.open();
-        TasksModel item = todoList.get(position);
-        Bundle bundle = new Bundle();
-        bundle.putInt("id", item.getId());
-        bundle.putLong("duration", item.getDuration());
-    }
-
-    public int getDuration(int duration){
-      return duration;
+    public int getTaskDuration(){
+       bundle = getIntent().getExtras();
+       int time = bundle.getInt("duration");
+        System.out.println(time);
+       return time;
+       //todo: fix the the get task duration method
     }
 
     public void setTime(long milliseconds){

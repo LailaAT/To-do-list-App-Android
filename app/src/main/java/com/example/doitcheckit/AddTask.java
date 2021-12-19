@@ -80,7 +80,7 @@ public class AddTask extends BottomSheetDialogFragment {
             String numString = String.valueOf(num);
             newTaskText.setText(taskName);
             duration.setText(numString);
-            if (taskName != null) { //taskName.length() > 0 && taskName.length() < 50)
+            if (taskName.length() > 0 && taskName.length() < 50) { //validity for editing tasks
                 if(num > 0 && num < 120) {
                     //if the user inputted text
                     saveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.pastelBrown));
@@ -95,7 +95,7 @@ public class AddTask extends BottomSheetDialogFragment {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if((s.length() > 0 && s.length() < 50)){ //&& (duration > 0 && duration < 120)){
+                if((s.length() > 0 && s.length() < 50)){//&& (duration > 0 && duration < 120)){
                     saveButton.setEnabled(true);
                     saveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.pastelBrown));
                 }else{
@@ -105,6 +105,28 @@ public class AddTask extends BottomSheetDialogFragment {
             }
             @Override
             public void afterTextChanged(Editable s) { }
+        });
+
+        duration.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int s2 = Integer.parseInt(s.toString());
+                if(s2 > 0 && s2 <= 120){
+                    saveButton.setEnabled(true);
+                    saveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.pastelBrown));
+                } else{
+                    saveButton.setEnabled(false);
+                    saveButton.setTextColor(Color.GRAY);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
         });
         final boolean finalIsUpdate = isUpdate;
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -126,6 +148,23 @@ public class AddTask extends BottomSheetDialogFragment {
             }
         });
     }
+
+    public boolean checkText(CharSequence x){
+        try{
+            int xNum = Integer.parseInt(x.toString());
+            //trying to see if it's a duration
+            if (xNum > 0 && xNum <= 120){
+                return true;
+            }
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+        if(x.length() > 0 && x.length() < 50){
+            return true;
+        }
+        return false;
+    }
+
 
     @Override
     public void onDismiss(@NonNull DialogInterface dialog){

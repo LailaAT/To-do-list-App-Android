@@ -109,7 +109,6 @@ public class AddTask extends BottomSheetDialogFragment {
                                 saveButton.setTextColor(Color.GRAY);
                             }
                         }
-
                         @Override
                         public void afterTextChanged(Editable s) { }
                     });
@@ -122,17 +121,6 @@ public class AddTask extends BottomSheetDialogFragment {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(hasFocus){
-                    duration.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
-                        @Override
-                        public void onViewAttachedToWindow(View v) {
-
-                        }
-
-                        @Override
-                        public void onViewDetachedFromWindow(View v) {
-
-                        }
-                    });
                     duration.addTextChangedListener(new TextWatcher() {
                         @Override
                         public void beforeTextChanged(CharSequence s, int start, int count, int after) { }

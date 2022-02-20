@@ -7,6 +7,27 @@
     android:id="@+id/countdownLayout"
     android:background="@drawable/countdown_background">
 
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id = "@+id/backArrowC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:backgroundTint="#84B4C8"
+        android:src="@drawable/back_arrow"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/backArrowC"
+        android:text="Complete your task!"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#44240F"
+        />
+
     <TextView
         android:id="@+id/countdownText"
         android:layout_width="wrap_content"

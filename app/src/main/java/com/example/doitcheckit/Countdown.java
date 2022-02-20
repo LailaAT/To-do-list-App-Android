@@ -1,6 +1,7 @@
 package com.example.doitcheckit;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.CountDownTimer;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,6 +29,7 @@ public class Countdown extends AppCompatActivity {
     private TasksModel task;
     private List<TasksModel> todoList;
     private Bundle bundle;
+    private Intent i;
 
     //attribute for countdown text
     private TextView countdownView;
@@ -46,15 +48,12 @@ public class Countdown extends AppCompatActivity {
     //database variables
     private TaskDAO taskDAO;
 
-    public Countdown(int duration){
-        this.duration = duration;
-    }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.countdown);
+        getSupportActionBar().hide();
         //interface
         countdownView = findViewById(R.id.countdownText);
         startPause = findViewById(R.id.startPauseButton);
@@ -63,6 +62,8 @@ public class Countdown extends AppCompatActivity {
 
         //duration the countdown will use
         startTime = getTaskDuration() * 60000;//converting it into milliseconds
+        timeLeft = startTime;
+        updateText();
 
         startPause.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,13 +87,10 @@ public class Countdown extends AppCompatActivity {
 
     }
 
-    //public void onStart(){ }
-
-
     public int getTaskDuration(){
-       bundle = getIntent().getExtras();
+       i = getIntent();
+       bundle = i.getExtras();
        int time = bundle.getInt("duration");
-        System.out.println(time);
        return time;
        //todo: fix the the get task duration method
     }
@@ -102,14 +100,6 @@ public class Countdown extends AppCompatActivity {
         resetTimer();
         closeKeyboard();
     }
-
-
-    /*private void setTime(long milliseconds){
-        startTime = milliseconds;
-        resetTimer();
-        //this will update countdown time and text
-        closeKeyboard();
-    }*/
 
     private void startTimer(){
         endTime = System.currentTimeMillis() + timeLeft;
@@ -138,7 +128,6 @@ public class Countdown extends AppCompatActivity {
         updateInterface();
         //if pause is pressed then user can continue or reset
     }
-
 
     private void resetTimer(){
         timeLeft = startTime;
@@ -195,6 +184,4 @@ public class Countdown extends AppCompatActivity {
             imm.hideSoftInputFromWindow(view.getWindowToken(),0);
         }
     }
-
-
 }

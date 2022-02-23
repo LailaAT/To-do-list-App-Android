@@ -11,7 +11,6 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        getSupportActionBar().hide();
         //Splash will be the display screen when first opening the app
         //then it will display the main after it by a few milliseconds
         final Intent i = new Intent(SplashActivity.this,MainActivity.class);

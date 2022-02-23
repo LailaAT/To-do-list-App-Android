@@ -1,33 +1,25 @@
 package com.example.doitcheckit;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.CountDownTimer;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.doitcheckit.Adapter.ToDoAdapter;
-import com.example.doitcheckit.Model.TasksModel;
-import com.example.doitcheckit.Utils.Database;
-import com.example.doitcheckit.Utils.TaskDAO;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 import java.util.Locale;
 
 public class Countdown extends AppCompatActivity {
-    //Objects
-    private TasksModel task;
-    private List<TasksModel> todoList;
+    //Objects to retrieve data
     private Bundle bundle;
     private Intent i;
 
@@ -37,6 +29,7 @@ public class Countdown extends AppCompatActivity {
     //Buttons
     private Button startPause;
     private Button reset; //defining the start/pause + reset button
+    private FloatingActionButton backButton;
 
     private CountDownTimer countdown; //Countdown
     private boolean timerRunning; //if timer is running or not
@@ -44,9 +37,6 @@ public class Countdown extends AppCompatActivity {
     private long startTime;
     private long timeLeft = startTime;
     private long endTime;
-    private int duration;
-    //database variables
-    private TaskDAO taskDAO;
 
 
     @Override
@@ -58,6 +48,7 @@ public class Countdown extends AppCompatActivity {
         countdownView = findViewById(R.id.countdownText);
         startPause = findViewById(R.id.startPauseButton);
         reset = findViewById(R.id.resetButton);
+        backButton = findViewById(R.id.backArrowC);
         //id's initially created in interface
 
         //duration the countdown will use
@@ -85,6 +76,41 @@ public class Countdown extends AppCompatActivity {
             }
         });
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goBack(v);
+            }
+        });
+
+    }
+
+    public void goBack(View v){
+        Intent intent = new Intent(v.getContext(), MainActivity.class);
+        if(timeLeft < 1000){
+            //if less than 1 sec left, go back straight away, task is completed
+            v.getContext().startActivity(intent);
+        } else{
+            AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+            builder.setTitle("Go back to Task Overview");
+            builder.setMessage("Are you sure you want to go back to the task overview, your task will not be completed." +
+                    "\n You will not have coins taken away if you go back.");
+            builder.setPositiveButton("Yes, go back",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            v.getContext().startActivity(intent);
+                        }
+                    });
+            builder.setNegativeButton(android.R.string.cancel,new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
     }
 
     public int getTaskDuration(){
@@ -92,7 +118,6 @@ public class Countdown extends AppCompatActivity {
        bundle = i.getExtras();
        int time = bundle.getInt("duration");
        return time;
-       //todo: fix the the get task duration method
     }
 
     public void setTime(long milliseconds){

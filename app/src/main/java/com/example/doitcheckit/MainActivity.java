@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     private ToDoAdapter taskAdapter;
 
     private FloatingActionButton addtaskButton;
+    private FloatingActionButton menuButton;
     private List<TasksModel>taskList;
 
     private Database db;
@@ -36,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().hide();
 
         db = new Database(this);
         taskDAO = new TaskDAO(this);
@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                 AddTask.newInstance().show(getSupportFragmentManager(), AddTask.TAG);
             }
         });
+
+        menuButton = findViewById(R.id.menuTO);
 
     }
 

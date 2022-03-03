@@ -26,7 +26,7 @@
         android:layout_centerHorizontal="true"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:textColor="#0F8885"
+        android:textColor="#9F1D4B"
         />
 
     <TextView

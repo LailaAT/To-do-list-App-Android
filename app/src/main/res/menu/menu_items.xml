@@ -11,12 +11,12 @@
             android:icon="@drawable/stats"
             android:title="Stats/Report"/>
 
-        <item android:id="@+id/Settings"
-            android:icon="@drawable/settings"
-            android:title="Settings"/>
-
         <item android:id="@+id/Shop"
             android:icon="@drawable/store"
             android:title="Shop"/>
+
+        <item android:id="@+id/Settings"
+            android:icon="@drawable/settings"
+            android:title="Settings"/>
     </group>
 </menu>

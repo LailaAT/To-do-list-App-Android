@@ -2,8 +2,10 @@ package com.example.doitcheckit;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.CountDownTimer;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +24,7 @@ public class Countdown extends AppCompatActivity {
     //Objects to retrieve data
     private Bundle bundle;
     private Intent i;
+    private Activity activity;
 
     //attribute for countdown text
     private TextView countdownView;
@@ -43,13 +46,14 @@ public class Countdown extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.countdown);
-        getSupportActionBar().hide();
         //interface
         countdownView = findViewById(R.id.countdownText);
         startPause = findViewById(R.id.startPauseButton);
         reset = findViewById(R.id.resetButton);
         backButton = findViewById(R.id.backArrowC);
         //id's initially created in interface
+
+        activity = new Activity();
 
         //duration the countdown will use
         startTime = getTaskDuration() * 60000;//converting it into milliseconds
@@ -83,6 +87,19 @@ public class Countdown extends AppCompatActivity {
             }
         });
 
+        /*if(timerRunning == false){
+           AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            builder.setTitle("You left the app");
+            builder.setMessage("Countdown will restart whenever you leave the app without restarting");
+            builder.setPositiveButton("Okay",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                           dialog.cancel();
+                        }
+                    });
+            resetTimer();
+        }*/
     }
 
     public void goBack(View v){
@@ -100,6 +117,7 @@ public class Countdown extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             v.getContext().startActivity(intent);
+                            //goes back to task overview
                         }
                     });
             builder.setNegativeButton(android.R.string.cancel,new DialogInterface.OnClickListener() {
@@ -109,6 +127,7 @@ public class Countdown extends AppCompatActivity {
                         }
                     });
             AlertDialog dialog = builder.create();
+            //creates warning message and shows it
             dialog.show();
         }
     }

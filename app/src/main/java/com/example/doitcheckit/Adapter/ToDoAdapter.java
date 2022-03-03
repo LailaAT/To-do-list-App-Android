@@ -32,7 +32,6 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     private List<TasksModel> todoList; //list of tasks
     private MainActivity activity; //attribute for main activity
     private TaskDAO taskDAO;  //database handler for tasks
-    private Countdown countdown;
 
     public ToDoAdapter(MainActivity activity, TaskDAO taskDAO) {
         this.activity = activity;

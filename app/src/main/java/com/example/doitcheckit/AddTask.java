@@ -76,7 +76,7 @@ public class AddTask extends BottomSheetDialogFragment {
         //this allows me to get the data from the adapter and then pass it on to the dialog sheet fragment
         if(bundle != null) {
             isUpdate = true;
-            taskName = bundle.getString("taskName");
+            taskName = bundle.getString("task_name");
             num = bundle.getInt("duration");
             String numString = String.valueOf(num);
             newTaskText.setText(taskName);
@@ -187,8 +187,8 @@ public class AddTask extends BottomSheetDialogFragment {
                 String text = newTaskText.getText().toString();
                 int num = Integer.parseInt(duration.getText().toString());
                 if(finalIsUpdate){
-                        taskDAO.updateTask(bundle.getInt("task_id"), text);
-                        taskDAO.updateDuration(bundle.getInt("task_id"), num);
+                        taskDAO.updateTask(bundle.getInt("id"), text);
+                        taskDAO.updateDuration(bundle.getInt("id"), num);
                 } else {
                     task = new TasksModel();
                     task.setStatus(0);

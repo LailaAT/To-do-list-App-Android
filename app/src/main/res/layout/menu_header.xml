@@ -8,11 +8,20 @@
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/backButtonM"
+        android:layout_width="85dp"
+        android:layout_height="55dp"
+        android:backgroundTint="#D89A2F"
+        android:src="@drawable/back_arrow"
+        />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp"
+        android:layout_marginVertical="70dp"
         android:text="Menu bar"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:layout_marginVertical="70dp" />
+        android:textSize="21dp"
+        android:textColor="@color/white"
+        />
 </LinearLayout>

@@ -69,6 +69,13 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         });
 
         menuButton = findViewById(R.id.menuTO);
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(),Menu.class);
+                v.getContext().startActivity(intent);
+            }
+        });
 
     }
 

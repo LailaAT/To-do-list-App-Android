@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@drawable/_2"
+        />
+
+    <TextView
+        android:id="@+id/MenuTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:text="Menu bar"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/backButtonM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/MenuTitle"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="20dp"
+        app:backgroundTint="#D89A2F"
+        android:src="@drawable/back_arrow"
+        android:scaleX="-1" />
+
+
+
+    <EditText
+        android:id="@+id/listMenu"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:text="Lists"
+        android:textSize="20dp"
+        android:layout_marginTop="270dp"
+        android:layout_marginStart="15dp"
+        android:drawableLeft="@drawable/lists"
+        android:drawablePadding="10dp"
+        android:background="@android:color/transparent"
+        android:focusable="false"
+        />
+
+    <EditText
+        android:id="@+id/statsMenu"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:text="Stats Report"
+        android:textSize="20dp"
+        android:layout_marginTop="330dp"
+        android:layout_marginStart="15dp"
+        android:drawableLeft="@drawable/stats"
+        android:drawablePadding="15dp"
+        android:background="@android:color/transparent"
+        android:focusable="false"
+        />
+
+    <EditText
+        android:id="@+id/shopMenu"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:text="Shop"
+        android:textSize="20dp"
+        android:layout_marginTop="390dp"
+        android:layout_marginStart="15dp"
+        android:drawableLeft="@drawable/store"
+        android:drawablePadding="15dp"
+        android:background="@android:color/transparent"
+        android:focusable="false"
+        />
+
+    <EditText
+        android:id="@+id/settingsMenu"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:text="Settings"
+        android:textSize="20dp"
+        android:layout_marginTop="450dp"
+        android:layout_marginStart="15dp"
+        android:drawableLeft="@drawable/settings"
+        android:drawablePadding="15dp"
+        android:background="@android:color/transparent"
+        android:focusable="false"
+        />
+</RelativeLayout>

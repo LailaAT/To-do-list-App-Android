@@ -24,6 +24,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Countdown" />
         <activity android:name=".Menu"/>
+        <activity android:name=".ListView"/>
     </application>
 
 </manifest>

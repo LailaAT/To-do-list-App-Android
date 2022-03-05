@@ -21,6 +21,13 @@ public class Database extends SQLiteOpenHelper {
     public static final String LIST_NAME = "listName";
     public static final String LIST_COLOR = "listColor";
 
+    //User/coin variables
+    public static final String UTIL_TABLE = "utilTable";
+    public static final String USER_ID = "userId";
+    public static final String COINS = "coins";
+    public static final String USER_NAME = "username";
+    public static final String USER_PASS = "password";
+
     //Other properties such as database name
     public static final String TAG = "db";
     private static final String NAME = "AppDatabase.db";
@@ -41,6 +48,11 @@ public class Database extends SQLiteOpenHelper {
             + LIST_NAME + " TEXT, "
             + LIST_COLOR + " TEXT)";
 
+    private static final String CREATE_UTIL_TABLE = "CREATE TABLE " + UTIL_TABLE + "("
+            + USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + COINS + " INTEGER, "
+            + USER_NAME + " TEXT, "
+            + USER_PASS + " TEXT) ";
 
     public Database(Context context){
         super(context, NAME, null, VERSION);
@@ -50,6 +62,7 @@ public class Database extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db){
         db.execSQL(CREATE_TASK_TABLE);
         db.execSQL(CREATE_LIST_TABLE);
+        db.execSQL(CREATE_UTIL_TABLE);
     }
 
     @Override
@@ -59,6 +72,7 @@ public class Database extends SQLiteOpenHelper {
         //clearing the data
         db.execSQL("DROP TABLE IF EXISTS " + TASK_TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + LIST_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + UTIL_TABLE);
         //recreating the table
         onCreate(db);
     }

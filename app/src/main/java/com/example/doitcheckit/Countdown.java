@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -65,7 +66,7 @@ public class Countdown extends AppCompatActivity {
             public void onClick(View v) {
                 if(timerRunning){
                     pauseTimer();
-                    //when the timer is running and pause button is clicked then stop timer
+                    //when the timer is running and pause button appears
                 } else{
                     startTimer();
                     //if not then timer continues
@@ -87,19 +88,7 @@ public class Countdown extends AppCompatActivity {
             }
         });
 
-        /*if(timerRunning == false){
-           AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-            builder.setTitle("You left the app");
-            builder.setMessage("Countdown will restart whenever you leave the app without restarting");
-            builder.setPositiveButton("Okay",
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                           dialog.cancel();
-                        }
-                    });
-            resetTimer();
-        }*/
+
     }
 
     public void goBack(View v){
@@ -166,6 +155,13 @@ public class Countdown extends AppCompatActivity {
         //reset button will not be shown while timer is running
     }
 
+    @Override
+    protected void onStop(){
+        super.onStop();
+        pauseTimer();
+        Toast.makeText(this, "Leaving app will stop countdown", Toast.LENGTH_SHORT).show();
+    }
+
     private void pauseTimer(){
         countdown.cancel();
         timerRunning = false;
@@ -177,6 +173,14 @@ public class Countdown extends AppCompatActivity {
         timeLeft = startTime;
         updateText();
         updateInterface();
+    }
+    
+    private void onFinish(){
+        int durationC = getTaskDuration();
+        int hours = (int) (durationC/1000)/3600;
+        int min = (int) ((durationC/1000)%3600)/60;
+        int sec = (int) (durationC/1000)%60;
+        int coins = hours + min + sec;
     }
 
     private void updateText(){

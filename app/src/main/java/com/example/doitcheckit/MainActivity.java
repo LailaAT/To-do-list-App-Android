@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.doitcheckit.Adapter.ToDoAdapter;
 import com.example.doitcheckit.Model.TasksModel;
@@ -28,7 +29,10 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
     private FloatingActionButton addtaskButton;
     private FloatingActionButton menuButton;
+    private TextView coinT;
     private List<TasksModel>taskList;
+
+    private int coins;
 
     private Database db;
     private TaskDAO taskDAO;
@@ -36,7 +40,16 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(savedInstanceState != null){
+            coins = savedInstanceState.getInt(Database.COINS);
+        } else{
+            coins = 0;
+        }
         setContentView(R.layout.activity_main);
+
+        coinT = findViewById(R.id.coinText);
+        String coinString = Integer.toString(coins);
+        coinT.setText("00" + coinString);
 
         db = new Database(this);
         taskDAO = new TaskDAO(this);
@@ -79,6 +92,15 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState)
+    {
+        // Save the user's current game state
+        savedInstanceState.putInt(Database.COINS, coins);
+
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
+    }
 
     @Override
     public void handleDialogClose(DialogInterface dialog){

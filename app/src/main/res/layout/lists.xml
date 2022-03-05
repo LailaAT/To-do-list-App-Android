@@ -5,6 +5,15 @@
     android:background="@drawable/list"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id = "@+id/backButtonL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:backgroundTint="#84B4C8"
+        android:src="@drawable/back_arrow"
+        />
+
     <TextView
         android:id = "@+id/listTitle"
         android:layout_width = "wrap_content"
@@ -15,7 +24,7 @@
         android:gravity="center"
         android:layout_marginStart = "110dp"
         android:layout_marginBottom = "20dp"
-        android:layout_marginTop = "20dp"
+        android:layout_marginTop = "70dp"
         android:textSize = "35sp" />
 
     <androidx.recyclerview.widget.RecyclerView

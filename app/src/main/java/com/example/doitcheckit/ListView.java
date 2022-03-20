@@ -13,6 +13,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class ListView extends AppCompatActivity implements DialogCloseListener {
 
     private FloatingActionButton backButton;
+    private FloatingActionButton addCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -25,6 +26,14 @@ public class ListView extends AppCompatActivity implements DialogCloseListener {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(),Menu.class);
                 v.getContext().startActivity(intent);
+            }
+        });
+
+        addCategory = findViewById(R.id.addList);
+        addCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddCategory.newInstance().show(getSupportFragmentManager(), AddCategory.TAG);
             }
         });
     }

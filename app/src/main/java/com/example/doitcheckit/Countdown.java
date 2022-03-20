@@ -16,7 +16,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.doitcheckit.Adapter.ToDoAdapter;
+import com.example.doitcheckit.Utils.TaskDAO;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Locale;
@@ -42,11 +46,19 @@ public class Countdown extends AppCompatActivity {
     private long timeLeft = startTime;
     private long endTime;
 
+    //objects for deleting
+    private ToDoAdapter adapter;
+    private TaskDAO taskDAO;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.countdown);
+
+        taskDAO = new TaskDAO(this);
+        taskDAO.open();
+        adapter = new ToDoAdapter(Countdown.this, taskDAO);
+
         //interface
         countdownView = findViewById(R.id.countdownText);
         startPause = findViewById(R.id.startPauseButton);
@@ -84,11 +96,13 @@ public class Countdown extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goBack(v);
+                if(timeLeft < 1000){
+                    onFinish(v);
+                } else {
+                    goBack(v);
+                }
             }
         });
-
-
     }
 
     public void goBack(View v){
@@ -126,6 +140,13 @@ public class Countdown extends AppCompatActivity {
        bundle = i.getExtras();
        int time = bundle.getInt("duration");
        return time;
+    }
+
+    public int getTaskPosition(){
+        Intent i = getIntent();
+        Bundle bundle = i.getExtras();
+        int position = bundle.getInt("position");
+        return position;
     }
 
     public void setTime(long milliseconds){
@@ -174,20 +195,38 @@ public class Countdown extends AppCompatActivity {
         updateText();
         updateInterface();
     }
-    
-    private void onFinish(){
-        int durationC = getTaskDuration();
-        int hours = (int) (durationC/1000)/3600;
-        int min = (int) ((durationC/1000)%3600)/60;
-        int sec = (int) (durationC/1000)%60;
-        int coins = hours + min + sec;
+
+
+    public void onFinish(View v){
+        final int position = getTaskPosition();
+        Intent intent = new Intent(v.getContext(), MainActivity.class);
+        AlertDialog.Builder builder = new AlertDialog.Builder(adapter.getContext());
+        builder.setTitle("Task finished, do you want to delete it?");
+        builder.setMessage("Task is finished, do you want to delete the task?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                adapter.deleteItem(position);
+                v.getContext().startActivity(intent);
+                //adapter.notifyItemChanged(getTaskPosition());
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                v.getContext().startActivity(intent);
+            }
+        });
+        AlertDialog dialog = builder.create();
+        //creates warning message and shows it
+        dialog.show();
     }
 
     private void updateText(){
         int hours = (int) (timeLeft/1000)/3600;
         //calculating hours
         int min = (int) ((timeLeft/1000)%3600)/60;
-        //turns milleseconds to seconds then to minutes
+        //turns milliseconds to seconds then to minutes
         int sec = (int) (timeLeft/1000)%60;
         //returns what is left after calculating minutes
         String timeFormat;

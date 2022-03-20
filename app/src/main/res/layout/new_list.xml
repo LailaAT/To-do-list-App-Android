@@ -9,7 +9,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:hint="Add a new List"/>
     <Button
-        android:id="@+id/newListButton"
+        android:id="@+id/saveButtonL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/newListText"

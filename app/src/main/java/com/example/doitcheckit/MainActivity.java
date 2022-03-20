@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(savedInstanceState != null){
+        /*if(savedInstanceState != null){
             coins = savedInstanceState.getInt(Database.COINS);
         } else{
             coins = 0;
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
         coinT = findViewById(R.id.coinText);
         String coinString = Integer.toString(coins);
-        coinT.setText("00" + coinString);
+        coinT.setText("00" + coinString);*/
 
         db = new Database(this);
         taskDAO = new TaskDAO(this);

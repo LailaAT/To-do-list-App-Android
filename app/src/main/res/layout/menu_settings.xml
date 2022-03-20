@@ -76,12 +76,26 @@
         />
 
     <EditText
+        android:id="@+id/priority"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:text="Priority Tasks"
+        android:textSize="20dp"
+        android:layout_marginTop="450dp"
+        android:layout_marginStart="15dp"
+        android:drawableLeft="@drawable/checked"
+        android:drawablePadding="15dp"
+        android:background="@android:color/transparent"
+        android:focusable="false"
+        />
+
+    <EditText
         android:id="@+id/settingsMenu"
         android:layout_width="350dp"
         android:layout_height="60dp"
         android:text="Settings"
         android:textSize="20dp"
-        android:layout_marginTop="450dp"
+        android:layout_marginTop="510dp"
         android:layout_marginStart="15dp"
         android:drawableLeft="@drawable/settings"
         android:drawablePadding="15dp"

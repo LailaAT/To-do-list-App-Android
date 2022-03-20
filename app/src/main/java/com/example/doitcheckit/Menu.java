@@ -23,6 +23,7 @@ public class Menu extends AppCompatActivity{
     private EditText lists;
     private EditText stats;
     private EditText shop;
+    private EditText priority;
     private EditText settings;
     //each of these refers to the corresponding layout it goes to
 
@@ -34,6 +35,7 @@ public class Menu extends AppCompatActivity{
         lists = findViewById(R.id.listMenu);
         stats = findViewById(R.id.statsMenu);
         shop = findViewById(R.id.shopMenu);
+        priority = findViewById(R.id.priority);
         settings = findViewById(R.id.settingsMenu);
 
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -51,5 +53,14 @@ public class Menu extends AppCompatActivity{
                 v.getContext().startActivity(intent);
             }
         });
+
+        priority.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent intent = new Intent(v.getContext(),);
+                //v.getContext().startActivity(intent);
+            }
+        });
+
     }
 }

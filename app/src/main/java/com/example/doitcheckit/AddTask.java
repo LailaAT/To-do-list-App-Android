@@ -142,44 +142,7 @@ public class AddTask extends BottomSheetDialogFragment {
             }
         });
 
-        /*newTaskText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if((s.length() > 0 && s.length() <= 50)){//&& (duration > 0 && duration < 120)){
-                    saveButton.setEnabled(true);
-                    saveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.pastelBrown));
-                }else{
-                    saveButton.setEnabled(false);
-                    saveButton.setTextColor(Color.GRAY);
-                }
-            }
-            @Override
-            public void afterTextChanged(Editable s) { }
-        }); */
 
-        /* duration.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                int s2 = Integer.parseInt(s.toString());
-                if(s2 > 0 && s2 <= 120){
-                    saveButton.setEnabled(true);
-                    saveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.pastelBrown));
-                } else{
-                    saveButton.setEnabled(false);
-                    saveButton.setTextColor(Color.GRAY);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        }); */
         final boolean finalIsUpdate = isUpdate;
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override

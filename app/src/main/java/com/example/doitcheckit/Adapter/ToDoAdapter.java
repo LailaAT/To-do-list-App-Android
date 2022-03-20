@@ -20,21 +20,28 @@ import com.example.doitcheckit.MainActivity;
 import com.example.doitcheckit.Model.TasksModel;
 import com.example.doitcheckit.R;
 import com.example.doitcheckit.Utils.TaskDAO;
-import com.example.doitcheckit.Utils.Database;
-import com.example.doitcheckit.Utils.TaskDAO;
 
 import java.util.List;
+
+
 
 //import kotlinx.coroutines.scheduling.Task;
 
 public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     public static final String TAG = "RecyclerViewAdapter";
     private List<TasksModel> todoList; //list of tasks
+    private List<TasksModel> priority;
     private MainActivity activity; //attribute for main activity
+    private Countdown countdown;
     private TaskDAO taskDAO;  //database handler for tasks
 
     public ToDoAdapter(MainActivity activity, TaskDAO taskDAO) {
         this.activity = activity;
+        this.taskDAO = taskDAO;
+    }
+
+    public ToDoAdapter(Countdown countdown, TaskDAO taskDAO){
+        this.countdown = countdown;
         this.taskDAO = taskDAO;
     }
 
@@ -70,6 +77,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
                 Log.d(TAG, "onClick: clicked on: " + todoList.get(position));
                 Intent intent  = new Intent(v.getContext(), Countdown.class);
                 intent.putExtra("duration",item.getDuration());
+                intent.putExtra("position", position);//write in development
                 v.getContext().startActivity(intent);
             }
         });
@@ -116,6 +124,16 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         todoList.remove(position);
         notifyItemRemoved(position);
         //updates recycler view
+    }
+
+    public List<TasksModel> getPriorityTasks(){
+        for(int i = 0; i <= todoList.size(); i++){
+            TasksModel item = todoList.get(i);
+            if(item.getStatus() == 1){
+                priority.add(item);
+            }
+        }
+        return priority;
     }
 
     //A recycler view is class that displays a collection of data

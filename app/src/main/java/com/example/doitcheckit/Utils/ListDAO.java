@@ -59,7 +59,6 @@ public class ListDAO {
                     ListsModel list = new ListsModel();
                     list.setId(cur.getInt(cur.getColumnIndex(Database.LIST_ID)));
                     list.setListName(cur.getString(cur.getColumnIndex(Database.LIST_NAME)));
-                    list.setColor(cur.getString(cur.getColumnIndex(Database.LIST_COLOR)));
                     categoryList.add(list);
                 }while(cur.moveToNext());
             }
@@ -78,11 +77,11 @@ public class ListDAO {
         db.update(Database.LIST_TABLE, cv, Database.LIST_ID + "= ?", new String[] {String.valueOf(id)});
     }
 
-    public void updateColor(int id, String color){
+    /*public void updateColor(int id, String color){
         ContentValues cv = new ContentValues();
         cv.put(Database.LIST_COLOR, color);
         db.update(Database.LIST_TABLE, cv, Database.LIST_ID + "= ?", new String[] {String.valueOf(id)});
-    }
+    }*/
 
     //method to delete a list
     public void deleteList(int id){

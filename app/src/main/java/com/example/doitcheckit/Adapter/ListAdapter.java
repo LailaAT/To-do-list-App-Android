@@ -85,7 +85,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         TextView listName;
         ViewHolder(View view){
             super(view);
-            listName = (TextView) view.findViewById(R.id.listText);
+            listName = (TextView) view.findViewById(R.id.categoryName);
         }
     }
 }

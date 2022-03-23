@@ -32,10 +32,10 @@ public class Menu extends AppCompatActivity{
         setContentView(R.layout.menu_settings);
 
         backButton = findViewById(R.id.backButtonM);
-        lists = findViewById(R.id.listMenu);
+        lists = findViewById(R.id.categoryMenu);
         stats = findViewById(R.id.statsMenu);
         shop = findViewById(R.id.shopMenu);
-        priority = findViewById(R.id.priority);
+        priority = findViewById(R.id.priorityMenu);
         settings = findViewById(R.id.settingsMenu);
 
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +45,6 @@ public class Menu extends AppCompatActivity{
                 v.getContext().startActivity(intent);
             }
         });
-
         lists. setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

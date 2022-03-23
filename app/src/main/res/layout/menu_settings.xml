@@ -30,14 +30,13 @@
         app:backgroundTint="#D89A2F"
         android:src="@drawable/back_arrow"
         android:scaleX="-1" />
-
-
+    
 
     <EditText
-        android:id="@+id/listMenu"
+        android:id="@+id/categoryMenu"
         android:layout_width="350dp"
         android:layout_height="60dp"
-        android:text="Lists"
+        android:text="Categories"
         android:textSize="20dp"
         android:layout_marginTop="270dp"
         android:layout_marginStart="15dp"
@@ -76,7 +75,7 @@
         />
 
     <EditText
-        android:id="@+id/priority"
+        android:id="@+id/priorityMenu"
         android:layout_width="350dp"
         android:layout_height="60dp"
         android:text="Priority Tasks"

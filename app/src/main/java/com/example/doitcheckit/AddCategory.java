@@ -53,7 +53,7 @@ public class AddCategory extends BottomSheetDialogFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-        newCategoryText = requireView().findViewById(R.id.listText);
+        newCategoryText = requireView().findViewById(R.id.categoryName);
         saveButton = requireView().findViewById(R.id.saveButtonL);
         listDAO = new ListDAO(getContext());
 
@@ -66,14 +66,32 @@ public class AddCategory extends BottomSheetDialogFragment {
             updateCategory(bundle);
         }
         listDAO.open();
-        setListener(newCategoryText, saveButton);
+        newCategoryText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().length() < 1 && s.toString().length() > 50){ //limits for the name
+                    saveButton.setEnabled(true);
+                    saveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.pastelBrown));
+                } else{
+                    saveButton.setEnabled(false);
+                    saveButton.setTextColor(Color.GRAY);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) { }
+        });
 
         final boolean finalIsUpdate = isUpdate;
+
         saveButtonListener(finalIsUpdate, saveButton, bundle, newCategoryText);
 
     }
 
     private void setListener(EditText text, Button saveButton) {
+        text = requireView().findViewById(R.id.categoryName);
         text.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }

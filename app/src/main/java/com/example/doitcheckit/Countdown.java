@@ -50,6 +50,8 @@ public class Countdown extends AppCompatActivity {
     private ToDoAdapter adapter;
     private TaskDAO taskDAO;
 
+
+
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);

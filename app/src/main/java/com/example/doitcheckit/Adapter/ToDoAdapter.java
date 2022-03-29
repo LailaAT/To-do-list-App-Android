@@ -77,7 +77,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
                 Log.d(TAG, "onClick: clicked on: " + todoList.get(position));
                 Intent intent  = new Intent(v.getContext(), Countdown.class);
                 intent.putExtra("duration",item.getDuration());
-                intent.putExtra("position", position);//write in development
+                intent.putExtra("position", position);
                 v.getContext().startActivity(intent);
             }
         });

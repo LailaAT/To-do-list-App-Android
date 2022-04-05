@@ -23,6 +23,7 @@
             android:checked="false"
             android:buttonTint="#C1815B"/>
 
+        <!--Duration text view-->
         <TextView
             android:id="@+id/duration"
             android:layout_width="wrap_content"

@@ -18,9 +18,11 @@ import com.example.doitcheckit.AddTask;
 import com.example.doitcheckit.Countdown;
 import com.example.doitcheckit.MainActivity;
 import com.example.doitcheckit.Model.TasksModel;
+import com.example.doitcheckit.Priority;
 import com.example.doitcheckit.R;
 import com.example.doitcheckit.Utils.TaskDAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -33,10 +35,16 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     private List<TasksModel> priority;
     private MainActivity activity; //attribute for main activity
     private Countdown countdown;
+    private Priority priorityA;
     private TaskDAO taskDAO;  //database handler for tasks
 
     public ToDoAdapter(MainActivity activity, TaskDAO taskDAO) {
         this.activity = activity;
+        this.taskDAO = taskDAO;
+    }
+
+    public ToDoAdapter(Priority priorityA, TaskDAO taskDAO){
+        this.priorityA = priorityA;
         this.taskDAO = taskDAO;
     }
 
@@ -108,6 +116,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     //allows you to edit task
     public void editItem(int position){
         TasksModel item = todoList.get(position);
+        //using a bundle to get previous information for task
         Bundle bundle = new Bundle();
         bundle.putInt("id", item.getId());
         bundle.putString("task_name", item.getTaskName());
@@ -117,22 +126,19 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         fragment.show(activity.getSupportFragmentManager(), AddTask.TAG);
     }
 
-
+    //method to delete task from database
     public void deleteItem(int position){
         TasksModel item = todoList.get(position);
         taskDAO.deleteTask(item.getId());
         todoList.remove(position);
         notifyItemRemoved(position);
-        //updates recycler view
+        //updates recycler view by removing task
     }
 
-    public List<TasksModel> getPriorityTasks(){
-        for(int i = 0; i <= todoList.size(); i++){
-            TasksModel item = todoList.get(i);
-            if(item.getStatus() == 1){
-                priority.add(item);
-            }
-        }
+    public List<TasksModel> priorityList(){
+        activity = new MainActivity();
+        priority = activity.priorityTasks();
+        notifyDataSetChanged();
         return priority;
     }
 

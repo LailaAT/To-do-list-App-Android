@@ -9,22 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DoItCheckIt">
-       <!-- <activity android:name=".Login"></activity> -->
-       <!-- <activity
-            android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login" /> -->
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-                <!-- This makes sure that the splash screen i.e. the logo screen is the main launching screen for the app -->
+                <!-- This makes sure that the opening screen
+                is the main launching screen for the app -->
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".Countdown" />
         <activity android:name=".Menu"/>
         <activity android:name=".ListView"/>
+        <activity android:name=".Priority"/>
     </application>
 
 </manifest>

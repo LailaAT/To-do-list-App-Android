@@ -78,6 +78,8 @@ public class TaskDAO {
         return  taskList;
     }
 
+
+
     public List<TasksModel> getTasksInList(int listId){
         List<TasksModel>  tasksInList = new ArrayList<>();
         //this will be the list that will contain the tasks
@@ -97,7 +99,7 @@ public class TaskDAO {
 
     private TasksModel cursorToTask(Cursor cur){
         TasksModel task = new TasksModel();
-        //assigning the task attributes
+        //assigning the task columns
         task.setId(cur.getInt(0));
         task.setStatus(cur.getInt(1));
         task.setTaskName(cur.getString(3));
@@ -112,6 +114,7 @@ public class TaskDAO {
         return task;
     }
 
+    //The following methods are for updating the task information
     public void updateStatus(int id, int status){
         ContentValues cv = new ContentValues();
         cv.put(Database.STATUS, status);
@@ -134,7 +137,4 @@ public class TaskDAO {
         db.delete(Database.TASK_TABLE, Database.TASK_ID + "= ?", new String[] {String.valueOf(id)});
         //this will delete the task
     }
-
-
-
 }

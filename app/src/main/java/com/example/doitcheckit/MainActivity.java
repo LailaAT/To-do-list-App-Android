@@ -33,24 +33,15 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     private TextView coinT;
     private List<TasksModel>taskList;
 
-    private int coins;
 
     private Database db;
     private TaskDAO taskDAO;
 
+    private int coins;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*if(savedInstanceState != null){
-            coins = savedInstanceState.getInt(Database.COINS);
-        } else{
-            coins = 0;
-        }
-        setContentView(R.layout.activity_main);
-
-        coinT = findViewById(R.id.coinText);
-        String coinString = Integer.toString(coins);
-        coinT.setText("00" + coinString);*/
         setContentView(R.layout.activity_main);
 
         db = new Database(this);
@@ -66,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         tasksRecyclerView.setAdapter(taskAdapter);
         //setting adapter to recycler view
 
+        //adding the swiping feature to tasks
         ItemTouchHelper itemTouchHelper = new
                 ItemTouchHelper(new ItemHelper(taskAdapter));
         itemTouchHelper.attachToRecyclerView(tasksRecyclerView);
@@ -83,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
             }
         });
 
+        //menu button takes the user to the menu bar
         menuButton = findViewById(R.id.menuTO);
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +85,17 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
             }
         });
 
+    }
+
+    public List<TasksModel> priorityTasks(){
+        List<TasksModel> priorityTasksList = new ArrayList<>();
+        taskList = taskDAO.getAllTasks();
+        for(TasksModel item : taskList){
+            if(item.getStatus() == 1){
+                priorityTasksList.add(item);
+            }
+        }
+        return priorityTasksList;
     }
 
     @Override

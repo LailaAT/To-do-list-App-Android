@@ -53,61 +53,53 @@ public class AddCategory extends BottomSheetDialogFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-        newCategoryText = requireView().findViewById(R.id.categoryName);
+        newCategoryText = requireView().findViewById(R.id.newListText);
         saveButton = requireView().findViewById(R.id.saveButtonL);
         listDAO = new ListDAO(getContext());
 
         String categoryName;
-        boolean isUpdate = false;
+        boolean isUpdate = false;//checking if user is updating or creating new category
         final Bundle bundle = getArguments();
 
-        if (bundle != null){
+        if (bundle != null){//checking if user is updating or creating new category
             isUpdate = true;
-            updateCategory(bundle);
+            updateCategory(bundle);//calls method to update
         }
-        listDAO.open();
+        listDAO.open();//opens database to save new info
         newCategoryText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.toString().length() < 1 && s.toString().length() > 50){ //limits for the name
+                if(s.toString().length() > 1 && s.toString().length() < 50){ //limits for the name
                     saveButton.setEnabled(true);
                     saveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.pastelBrown));
+                    //user can save category in this section
                 } else{
                     saveButton.setEnabled(false);
-                    saveButton.setTextColor(Color.GRAY);
+                    saveButton.setTextColor(Color.GRAY);//user cannot save category
                 }
             }
             @Override
             public void afterTextChanged(Editable s) { }
         });
-
         final boolean finalIsUpdate = isUpdate;
-
-        saveButtonListener(finalIsUpdate, saveButton, bundle, newCategoryText);
-
-    }
-
-    private void setListener(EditText text, Button saveButton) {
-        text = requireView().findViewById(R.id.categoryName);
-        text.addTextChangedListener(new TextWatcher() {
+        saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.length() < 1 && s.length() > 50){ //limits for the name
-                    saveButton.setEnabled(true);
-                    saveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.pastelBrown));
-                } else{
-                    saveButton.setEnabled(false);
-                    saveButton.setTextColor(Color.GRAY);
+            public void onClick(View v) {
+                String text = newCategoryText.getText().toString();
+                if(finalIsUpdate){
+                    listDAO.updateName(bundle.getInt("listId"), text);
+                    //updating category in database
+                } else {
+                    //saving the category to the database
+                    category = new ListsModel();
+                    category.setListName(text);
+                    listDAO.insertList(category);
                 }
+                dismiss();
             }
-            @Override
-            public void afterTextChanged(Editable s) { }
         });
     }
 
@@ -118,23 +110,6 @@ public class AddCategory extends BottomSheetDialogFragment {
         if(categoryName != null){
             saveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.pastelBrown));
         }
-    }
-
-    private void saveButtonListener(Boolean update, Button saveButton, Bundle bundle, EditText text){
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String text = newCategoryText.getText().toString();
-                if(update){
-                    listDAO.updateName(bundle.getInt("listId"), text);
-                } else {
-                    category = new ListsModel();
-                    category.setListName(text);
-                    listDAO.insertList(category);
-                }
-                dismiss();
-            }
-        });
     }
 
     @Override

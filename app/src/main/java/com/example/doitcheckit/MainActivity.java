@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
         //adding the swiping feature to tasks
         ItemTouchHelper itemTouchHelper = new
-                ItemTouchHelper(new ItemHelper(taskAdapter));
+                ItemTouchHelper(new ItemHelper(taskAdapter, this));
         itemTouchHelper.attachToRecyclerView(tasksRecyclerView);
 
         taskList = taskDAO.getAllTasks();

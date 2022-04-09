@@ -5,9 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.ListPopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,10 +34,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.listview, parent, false);
+                .inflate(R.layout.list_layout, parent, false);
         return new ListAdapter.ViewHolder(itemView);
     }
-
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {

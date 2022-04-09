@@ -41,9 +41,9 @@ public class ListDAO {
     //creating a list method
     public void insertList(ListsModel list){
         ContentValues cv = new ContentValues();
-        cv.put(Database.LIST_NAME, list.getListName());
-        cv.put(Database.LIST_COLOR, list.getColor());
-        db.insert(Database.LIST_TABLE, null, cv);
+        cv.put(helper.LIST_NAME, list.getListName());
+        //cv.put(Database.LIST_COLOR, list.getColor());
+        db.insert(helper.LIST_TABLE, null, cv);
     }
 
     //getting all the lists method
@@ -55,12 +55,14 @@ public class ListDAO {
             cur = db.query(Database.LIST_TABLE, null, null,
                     null, null, null, null, null);
             if(cur != null){
-                do{
-                    ListsModel list = new ListsModel();
-                    list.setId(cur.getInt(cur.getColumnIndex(Database.LIST_ID)));
-                    list.setListName(cur.getString(cur.getColumnIndex(Database.LIST_NAME)));
-                    categoryList.add(list);
-                }while(cur.moveToNext());
+                if(cur.moveToFirst()){
+                    do{
+                        ListsModel list = new ListsModel();
+                        list.setId(cur.getInt(cur.getColumnIndex(Database.LIST_ID)));
+                        list.setListName(cur.getString(cur.getColumnIndex(Database.LIST_NAME)));
+                        categoryList.add(list);
+                    }while(cur.moveToNext());
+                }
             }
         } finally{
             db.endTransaction();

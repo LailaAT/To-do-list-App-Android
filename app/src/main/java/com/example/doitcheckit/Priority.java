@@ -26,19 +26,20 @@ public class Priority extends AppCompatActivity implements DialogCloseListener {
     private FloatingActionButton addtaskButton;
     private FloatingActionButton menuButton;
     private TaskDAO taskDAO;
-    private List<TasksModel> priorityList;
+    private List<TasksModel> pList; //list that will contain all tasks
+    private List<TasksModel> priorityList;//list that will contain priority tasks
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);//defining the layout
 
-        taskDAO = new TaskDAO(this);
+        taskDAO = new TaskDAO(this);//initializing and opening the database
         taskDAO.open();
 
-        priorityList = new ArrayList<>();
+        pList = new ArrayList<>();//initializing array
 
         recyclerView = findViewById(R.id.tasksoverview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -46,13 +47,35 @@ public class Priority extends AppCompatActivity implements DialogCloseListener {
         toDoAdapter = new ToDoAdapter(Priority.this, taskDAO);
         recyclerView.setAdapter(toDoAdapter);
 
-        priorityList = toDoAdapter.priorityList();
+        pList = taskDAO.getAllTasks();
+        priorityList = new ArrayList<>();
+        for(TasksModel task : pList){
+            int status = task.getStatus();
+            if(status == 1){
+                priorityList.add(task);
+            }
+        }
         toDoAdapter.setTask(priorityList);
+    }
+
+    public List<TasksModel> getpList(){
+        List<TasksModel> tempList = new ArrayList<>();
+        List<TasksModel> priorityList = new ArrayList<>();
+        taskDAO = new TaskDAO(this);
+        taskDAO.open();
+        tempList = taskDAO.getAllTasks();
+        for(TasksModel task : tempList){
+            int status = task.getStatus();
+            if(status == 1){
+                priorityList.add(task);
+            }
+        }
+        return priorityList;
     }
 
     @Override
     public void handleDialogClose(DialogInterface dialog) {
-        priorityList = toDoAdapter.priorityList();
+        priorityList = getpList();
         toDoAdapter.setTask(priorityList);
         toDoAdapter.notifyDataSetChanged();
     }
